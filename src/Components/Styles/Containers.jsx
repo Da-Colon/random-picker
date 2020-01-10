@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const AppWrapper = styled.div`
   height: 100vh;
   width: 100%;
+  background: linear-gradient(rgba(255,255,255, 0.8), rgba(200, 200,230, 0.9), rgba(255,255,230, 1));
 `;
 
 export const LeftSideBar = styled.div`
@@ -14,13 +15,12 @@ export const LeftSideBar = styled.div`
   overflow-y: scroll;
   top: 0;
   width: 200px;
+  background: linear-gradient(rgba(255,255,255, 0.8), rgba(200, 200,230, 0.9), rgba(255,255,230, 1));
 
   @media (max-width: 768px) {
     display: none;
   }
 
-  // Delete
-  background-color: lightgrey;
 `;
 
 export const RightSideBar = styled.div`
@@ -32,13 +32,11 @@ export const RightSideBar = styled.div`
   right: 0;
   top: 0;
   width: 200px;
+  background: linear-gradient(rgba(255,255,255, 0.8), rgba(200, 200,230, 0.9), rgba(255,255,230, 1));
 
   @media (max-width: 768px) {
     display: none;
   }
-
-  // Delete
-  background-color: lightgrey;
 `;
 
 export const TopBar = styled.div`

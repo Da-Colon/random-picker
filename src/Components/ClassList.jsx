@@ -1,18 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import classData from '../Data/Dummy.data.json'
+import { Ol, ListTitles, Li } from './Styles/Fonts.jsx'
 
 export default function ClassList(props) {
 
 
   return (
-    <ul>
+    <>
+      <ListTitles>Queue</ListTitles>
+    <Ol>
       {props.students.map((student, index) => 
       (
-        <li key={student.id}>{student.name}
+        <>
+        <Li key={student.id}>{student.name}
         <button onClick={() => props.removeStudent(index)}>X</button>
-        </li>
+        </Li>
+        </>
       ))}
-    </ul>
-      
+    </Ol>
+      </>
   )
 }
