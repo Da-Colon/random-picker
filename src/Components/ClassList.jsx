@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import classData from '../Data/Dummy.data.json'
+import React from 'react'
+
 import { Ol, ListTitles, Li } from './Styles/Fonts.jsx'
 
 export default function ClassList(props) {
