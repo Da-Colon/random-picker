@@ -18,6 +18,7 @@ import './app.css'
 
 function App() {
   const [students, setStudents] = useState([])
+  const [completed, setCompleted] = useState([])
 
   useEffect(() => {
     setStudents(classData.ClassList) 
@@ -26,9 +27,16 @@ function App() {
 
   const removeStudent = (index) => {
     const newArray = [...students]
-    newArray.splice(index, 1)
+    const person = newArray.splice(index, 1)
     setStudents(newArray)
+    addToCompleted(person)
   }
+  
+  const addToCompleted = (haveCompleted) => {
+    const newArray = completed.concat(haveCompleted)
+    setCompleted(newArray)
+  }
+
 
   return (
     <div className="App">
@@ -41,7 +49,7 @@ function App() {
         </LeftSideBar>
         <Spinner />
         <RightSideBar>
-          <CalledList />
+          <CalledList completed={completed} />
         </RightSideBar>
       </AppWrapper>
     </div>
