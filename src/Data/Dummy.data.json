@@ -1,3 +1,15 @@
 {
-  "ClassList": ["David", "Kyra", "Nep", "Daniel", "Alonzo", "Gil", "Kate", "Mary-Ella", "Josh", "ChillDev", "Kobi"]
+  "ClassList": [
+    { "id": 1, "name": "David" },
+    { "id": 2, "name": "Kyra" },
+    { "id": 3, "name": "Nep" },
+    { "id": 4, "name": "Daniel" },
+    { "id": 5, "name": "Alonzo" },
+    { "id": 6, "name": "Gil" },
+    { "id": 7, "name": "Kate" },
+    { "id": 8, "name": "Mary-Ella" },
+    { "id": 9, "name": "Josh" },
+    { "id": 10, "name": "Chilldev" },
+    { "id": 11, "name": "Kobi" }
+  ]
 }

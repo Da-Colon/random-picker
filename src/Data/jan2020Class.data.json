@@ -1,0 +1,29 @@
+{
+  "ClassList": [
+    { "id": 1, "name": "Aaron" },
+    { "id": 2, "name": "Alan" },
+    { "id": 3, "name": "Ally" },
+    { "id": 4, "name": "Bailey" },
+    { "id": 5, "name": "Bobby" },
+    { "id": 6, "name": "Brooke" },
+    { "id": 7, "name": "Dustin" },
+    { "id": 8, "name": "Frank" },
+    { "id": 9, "name": "Fred" },
+    { "id": 10, "name": "Geordy" },
+    { "id": 11, "name": "Infernezor" }
+    { "id": 12, "name": "Jamario" }
+    { "id": 13, "name": "Jennifer" }
+    { "id": 14, "name": "Joseph" }
+    { "id": 15, "name": "Karley" }
+    { "id": 16, "name": "Lockett" }
+    { "id": 17, "name": "Malik" }
+    { "id": 18, "name": "Michael" }
+    { "id": 19, "name": "Patrick" }
+    { "id": 20, "name": "Paxton" }
+    { "id": 21, "name": "Peter" }
+    { "id": 22, "name": "Tchaikousky" }
+    { "id": 23, "name": "Victor" }
+    { "id": 24, "name": "Zach" }
+  ]
+}
+}
