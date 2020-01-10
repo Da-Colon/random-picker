@@ -44,7 +44,7 @@ export const RightSideBar = styled.div`
 export const TopBar = styled.div`
   width: 100%;
   height: 100px;
+`
 
-  // Delete
-  background-color: lightblue;
+export const HeaderContainer = styled.div`
 `

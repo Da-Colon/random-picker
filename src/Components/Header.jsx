@@ -1,9 +1,12 @@
 import React from 'react'
+import { PageTitle } from './Styles/Fonts'
 
 export default function Header() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <PageTitle data-cy="title">
+        Who's Next?
+      </PageTitle>
+    </>
   )
 }
