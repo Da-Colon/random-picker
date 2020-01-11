@@ -21,7 +21,7 @@ function App() {
   const [students, setStudents] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [name, setName] = useState("");
-  const [styles, setStyles] = useState({})
+
 
   useEffect(() => {
     setStudents(classData.ClassList);
