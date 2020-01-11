@@ -1,6 +1,6 @@
 import React from "react";
 import { Ol, ListTitles, Li } from "./Styles/Fonts.jsx";
-import { XButton } from "./Styles/Form.jsx";
+import { XButton } from "./Styles/Buttons";
 
 export default function ClassList(props) {
   return (

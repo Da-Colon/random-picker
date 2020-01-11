@@ -43,6 +43,16 @@ export const TopBar = styled.div`
   width: 100%;
   height: 100px;
 `
+export const MainArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
-export const HeaderContainer = styled.div`
+export const SpinnerContainer = styled.div`
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5), 2px 2px 10px rgba(0,0,0,0.5), 3px 4px 12px rgba(0,0,0,0.5)
 `
