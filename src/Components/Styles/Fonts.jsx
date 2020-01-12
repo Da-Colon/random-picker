@@ -30,6 +30,6 @@ export const Li = styled.li`
 export const Name = styled.p`
   display: static;
   text-align: center;
-  font-size: 3rem;
-  padding-top: 100px;
+  font-size: 2.5rem;
+  padding-top: 80px;
 `;

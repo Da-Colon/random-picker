@@ -15,12 +15,17 @@ import {
   TopBar,
   MainArea
 } from "./Components/Styles/Containers";
+
+import {ToggleSidebarButton} from './Components/Styles/Buttons'
+
 import "./app.css";
 
 function App() {
   const [students, setStudents] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [name, setName] = useState("");
+  const [styles, setStyles] = useState("");
+  const [border, setBorder] = useState("");
 
 
   useEffect(() => {
@@ -30,7 +35,6 @@ function App() {
   const removeStudent = index => {
     const newArray = [...students];
     const person = newArray.splice(index, 1);
-    console.log(person[0].name);
     setName(person[0].name);
     setStudents(newArray);
     addToCompleted(person);
@@ -45,6 +49,11 @@ function App() {
     if (students.length) {
       const randomIndex = Math.floor(Math.random() * students.length);
       removeStudent(randomIndex);
+      setStyles("animate")
+      setBorder("nothing")
+      setTimeout(()=> {
+        setBorder("tada")
+        setStyles("not-animated")}, 1000)
     } else{
       setName("You're Done")
     }
@@ -59,9 +68,11 @@ function App() {
         <LeftSideBar>
           <ClassList students={students} removeStudent={removeStudent} />
         </LeftSideBar>
+        <ToggleSidebarButton />
         <MainArea>
-          <Spinner name={name} randomPicker={randomPicker} />
+          <Spinner border={border} styles={styles} name={name} randomPicker={randomPicker} />
         </MainArea>
+        <ToggleSidebarButton />
         <RightSideBar>
           <CalledList completed={completed} />
         </RightSideBar>

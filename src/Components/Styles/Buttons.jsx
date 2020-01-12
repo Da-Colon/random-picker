@@ -19,3 +19,10 @@ export const RandomButton = styled.button`
     transform: scale(1.2)
   }
 `
+
+export const ToggleSidebarButton = styled.div`
+  height: 100px;
+  width: 12px;
+  float: right;
+  background-color: grey;
+`

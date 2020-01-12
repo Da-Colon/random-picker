@@ -3,14 +3,18 @@ import { SpinnerContainer } from "./Styles/Containers";
 import {RandomButton} from "./Styles/Buttons"
 import { Name } from "./Styles/Fonts";
 
+import './Styles/spinner.css'
+
 export default function Spinner(props) {
 
   return (
     <>
-      <SpinnerContainer>
-        <Name>{props.name}</Name>
+      <SpinnerContainer className={props.border}>
+        <Name className={props.styles}>{props.name}</Name>
       </SpinnerContainer>
       <RandomButton onClick={props.randomPicker}>Choose a Random Student</RandomButton>
     </>
   );
 }
+
+
