@@ -1,5 +1,18 @@
 @keyframes animated-name {
   0% {transform: scale(0.0)}
+  10% {transform: scale(0.1) } 
+  20% {transform: scale(0.2) }
+  30% {transform: scale(0.3) }
+  40% {transform: scale(0.4) }
+  50% {transform: scale(0.5) }
+  60% {transform: scale(0.6) }
+  70% {transform: scale(0.7) }
+  80% {transform: scale(0.8) }
+  90% {transform: scale(0.9) }
+  100% {transform: scale(1.1) }
+
+/* @keyframes animated-name {
+  0% {transform: scale(0.0)}
   10% {transform: scale(0.1) rotate(90deg)} 
   20% {transform: scale(0.2) rotate(180deg)}
   30% {transform: scale(0.3) rotate(360deg)}
@@ -9,15 +22,15 @@
   70% {transform: scale(0.7) rotate(720deg)}
   80% {transform: scale(0.8) rotate(810deg)}
   90% {transform: scale(0.0) rotate(900deg)}
-  100% {transform: scale(1) rotate(1080deg)}
+  100% {transform: scale(1) rotate(1080deg)} */
 }
 
 .animate {
-  animation: animated-name 1s linear 1;
+  animation: animated-name 4s linear 1;
 }
 
 .not-animated {
-  color: red;
+  color: rgb(70, 24, 238);
 }
 
 .tada {

@@ -16,8 +16,6 @@ import {
   MainArea
 } from "./Components/Styles/Containers";
 
-import {ToggleSidebarButton} from './Components/Styles/Buttons'
-
 import "./app.css";
 
 function App() {
@@ -44,16 +42,23 @@ function App() {
     const newArray = completed.concat(haveCompleted);
     setCompleted(newArray);
   };
-
+  const spinNames = () => {
+    const randomIndex = Math.floor(Math.random() * students.length);
+    setName(students[randomIndex].name)
+  }
+  
   const randomPicker = () => {
     if (students.length) {
       const randomIndex = Math.floor(Math.random() * students.length);
-      removeStudent(randomIndex);
       setStyles("animate")
       setBorder("nothing")
+      const spin = setInterval(spinNames, 100)  
       setTimeout(()=> {
+        removeStudent(randomIndex);
+        clearInterval(spin)
         setBorder("tada")
-        setStyles("not-animated")}, 1000)
+        setStyles("not-animated")
+      }, 4000)
     } else{
       setName("You're Done")
     }
