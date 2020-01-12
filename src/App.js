@@ -68,11 +68,9 @@ function App() {
         <LeftSideBar>
           <ClassList students={students} removeStudent={removeStudent} />
         </LeftSideBar>
-        <ToggleSidebarButton />
         <MainArea>
           <Spinner border={border} styles={styles} name={name} randomPicker={randomPicker} />
         </MainArea>
-        <ToggleSidebarButton />
         <RightSideBar>
           <CalledList completed={completed} />
         </RightSideBar>
