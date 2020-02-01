@@ -26,3 +26,17 @@ export const ToggleSidebarButton = styled.div`
   float: right;
   background-color: grey;
 `
+
+export const BottomContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+`
+
+export const TheBottomButtons = styled.button`
+  width: 50%;
+  border-right: 2px solid;
+  border-left: 2px solid;
+`

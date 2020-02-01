@@ -12,7 +12,7 @@ export default function Spinner(props) {
       <SpinnerContainer className={props.border}>
         <Name className={props.styles}>{props.name}</Name>
       </SpinnerContainer>
-      <RandomButton onClick={props.randomPicker}>Choose a Random Student</RandomButton>
+      <RandomButton onClick={props.randomPicker}>Random Student</RandomButton>
     </>
   );
 }
