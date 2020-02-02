@@ -20,7 +20,11 @@ import {
 import "./app.css";
 import BottomButtons from "./Components/BottomButtons.jsx";
 
+// Constants
+const mobileBreakpoint = 728
+
 function App() {
+
   const [students, setStudents] = useState([]);
   const [completed, setCompleted] = useState([]);
   const [name, setName] = useState("");
@@ -59,7 +63,7 @@ function App() {
   };
 
   const checkWindowSize = () => {
-    if (window.innerWidth <= 728) {
+    if (window.innerWidth <= mobileBreakpoint) {
       setShowCalledList(false);
       setShowClassList(false);
       setShowButtons(true);
@@ -124,7 +128,7 @@ function App() {
         <TopBar>
           <Header />
         </TopBar>
-        {showClassList || clickShowClass || window.innerWidth >= 728 ? (
+        {showClassList || clickShowClass || window.innerWidth >= mobileBreakpoint ? (
           <LeftSideBar>
             <ClassList students={students} removeStudent={removeStudent} />
           </LeftSideBar>
@@ -139,14 +143,14 @@ function App() {
             randomPicker={randomPicker}
           />
         </MainArea>
-        {showCalledList || clickShowCalled || window.innerWidth >= 728 ? (
+        {showCalledList || clickShowCalled || window.innerWidth >= mobileBreakpoint ? (
           <RightSideBar>
             <CalledList completed={completed} />
           </RightSideBar>
         ) : (
           ""
         )}
-        {showButtons || window.innerWidth < 728 ? (
+        {showButtons || window.innerWidth < mobileBreakpoint ? (
           <BottomButtons
             handleClickClass={handleClickClass}
             handleClickCalled={handleClickCalled}

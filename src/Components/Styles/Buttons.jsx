@@ -30,6 +30,8 @@ export const ToggleSidebarButton = styled.div`
 export const BottomContainer = styled.div`
   width: 100%;
   height: 50px;
+  position: absolute;
+  bottom: 55px;
   border: 2px solid black;
   display: flex;
   justify-content: space-around;
