@@ -1,11 +1,10 @@
 import React from "react";
-import { BottomContainer, TheBottomButtons } from "./Styles/Buttons";
 
 export default function BottomButtons(props) {
   return (
-    <BottomContainer>
-      <TheBottomButtons onClick={props.handleClickClass}>Class List</TheBottomButtons>
-      <TheBottomButtons onClick={props.handleClickCalled}>Called List</TheBottomButtons>
-    </BottomContainer>
+    <div>
+      <button onClick={props.handleClickClass}>Class List</button>
+      <button onClick={props.handleClickCalled}>Called List</button>
+    </div>
   );
 }

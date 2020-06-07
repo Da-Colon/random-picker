@@ -4,17 +4,17 @@ import { XButton } from "./Styles/Buttons";
 
 export const ClassList = props => (
     <>
-      <ListTitles>Queue</ListTitles>
-      <Ol>
+      <h2>Queue</h2>
+      <ol>
         {props.students.map((student, index) => (
           <div key={index}>
-            <Li className="class">
+            <li className="class">
               {student.name}
               <XButton id="class" onClick={() => props.removeStudent(index)}>X</XButton>
-            </Li>
+            </li>
           </div>
         ))}
-      </Ol>
+      </ol>
     </>
   );
 

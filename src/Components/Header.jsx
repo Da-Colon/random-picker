@@ -4,9 +4,9 @@ import { PageTitle } from './Styles/Fonts'
 export default function Header() {
   return (
     <>
-      <PageTitle data-cy="title">
+      <h1 data-cy="title">
         Who's Next?
-      </PageTitle>
+      </h1>
     </>
   )
 }
