@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classData from "./Data/jan2020Class.data.json";
+import './assets/main.css'
 
 //Import Components
 import Header from "./Components/Header";
