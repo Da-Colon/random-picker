@@ -1,12 +1,10 @@
 import React from 'react'
 import Router from './router'
-import ContextProvider from './context'
+import './assets/main.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 const App = () => (
-    <ContextProvider>
       <Router />
-    </ContextProvider>
   )
-
 
 export default App;
