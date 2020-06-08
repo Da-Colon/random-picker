@@ -22,7 +22,8 @@ const appReducer = (state = initialState, action) => {
     case "LOGGED_IN":
       return Object.assign({}, state, action.payload);
     case "LOGGED_OUT":
-      return state;
+      return state = initialState
+      
     default: {
       throw new Error(`Unhandle action type: ${action.type}`);
     }

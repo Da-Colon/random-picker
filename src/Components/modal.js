@@ -1,8 +1,8 @@
 import React from "react";
 
 const Modal = (props) => (
-  <div className="bg-gray-200 w-full h-screen flex items-start justify-end">
-    <div className="p-6 bg-white rounded-md">{props.children}</div>
+  <div id="modal-overlay" onClick={props._onClose} className="bg-gray-300 h-full flex items-start justify-end">
+    <div className="p-6 bg-white rounded-md shadow-2xl w-64">{props.children}</div>
   </div>
 );
 

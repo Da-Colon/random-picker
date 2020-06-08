@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext} from "react";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import Modal from "./modal";
@@ -27,8 +27,6 @@ const Login = (props) => {
         console.log('hello')
         localStorage.setItem('user', JSON.stringify(user));
       }
-      
-
       dispatchContext({ type: "LOGGED_IN", payload: { user: user } });
       history.push("/");
     } catch (error) {
@@ -42,8 +40,14 @@ const Login = (props) => {
     history.push("/");
   };
 
+  const _closeMenu = (e) => {
+    if(e.target.id === 'modal-overlay'){
+      history.push('/')
+    }
+  }
+
   return (
-    <Modal>
+    <Modal _onClose={_closeMenu}>
       <Formik
         validationSchema={Yup.object().shape({
           email: Yup.string().required("Email is required"),
