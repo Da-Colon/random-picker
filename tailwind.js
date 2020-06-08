@@ -84,6 +84,10 @@ module.exports = {
         800: '#285e61',
         900: '#234e52',
       },
+      dc: {
+        light: '#16A7A2',
+        dark: '#193d49'
+      },
       blue: {
         100: '#ebf8ff',
         200: '#bee3f8',
