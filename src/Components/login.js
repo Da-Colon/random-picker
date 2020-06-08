@@ -23,6 +23,11 @@ const Login = (props) => {
         values
       );
       const { user } = await res.json();
+      if(!localStorage.length > 0){
+        console.log('hello')
+        localStorage.setItem('user', JSON.stringify(user));
+      }
+      
 
       dispatchContext({ type: "LOGGED_IN", payload: { user: user } });
       history.push("/");
