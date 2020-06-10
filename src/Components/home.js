@@ -1,13 +1,14 @@
-import React from 'react'
-import Header from './header'
+import React from "react";
+import AccountMenu from "../components/accountMenu";
+import Login from "../components/login";
 
-const Home = () => {
-
+const Home = (props) => {
   return (
     <>
-     <Header />
+      {props.accountMenu && <AccountMenu handleAccountMenu={props.handleAccountMenu} />}
+      {props.loginMenu && <Login handleLoginMenu={props.handleLoginMenu}/>}
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

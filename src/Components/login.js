@@ -35,14 +35,9 @@ const Login = (props) => {
     }
   };
 
-  const _onCancel = (e) => {
-    e.preventDefault();
-    history.push("/");
-  };
-
   const _closeMenu = (e) => {
     if(e.target.id === 'modal-overlay'){
-      history.push('/')
+      props.handleLoginMenu();
     }
   }
 
@@ -53,7 +48,7 @@ const Login = (props) => {
           email: Yup.string().required("Email is required"),
           password: Yup.string()
             .required("Password is required")
-            .min(4, "Password at least 6 characters"),
+            .min(4, "Password at least 4 characters"),
         })}
         initialValues={{
           email: "",
@@ -97,7 +92,7 @@ const Login = (props) => {
             />
             <div className="w-full text-right mt-4 flex flex-col">
               <PrimaryButton type="submit">Submit</PrimaryButton>
-              <SecondaryButton onClick={_onCancel} type="button">
+              <SecondaryButton onClick={props.handleLoginMenu} type="button">
                 Cancel
               </SecondaryButton>
             </div>
