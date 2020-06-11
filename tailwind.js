@@ -281,6 +281,7 @@ module.exports = {
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
+      max_content: 'max-content',
     }),
     inset: {
       '0': '0',
