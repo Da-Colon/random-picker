@@ -1,6 +1,4 @@
 import React, { useReducer } from "react";
-
-
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
@@ -12,6 +10,8 @@ const initialState = {
   },
   list: [],
   completed: [],
+  loginMenu: false,
+  accountMenu: false,
 };
 
 export const StateContext = React.createContext();
@@ -23,7 +23,10 @@ const appReducer = (state = initialState, action) => {
       return Object.assign({}, state, action.payload);
     case "LOGGED_OUT":
       return state = initialState
-      
+    case "LOGIN_MENU_TOGGLE":
+      return Object.assign({}, state, {loginMenu: !state.loginMenu})
+    case "ACCOUNT_MENU_TOGGLE":
+      return Object.assign({}, state, {accountMenu: !state.loginMenu})
     default: {
       throw new Error(`Unhandle action type: ${action.type}`);
     }

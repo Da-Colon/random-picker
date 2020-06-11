@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import AccountMenu from "../components/accountMenu";
 import Login from "../components/login";
+import { StateContext } from "../context";
 
-const Home = (props) => {
+const Home = () => {
+  const { user, loginMenu, accountMenu } = useContext(StateContext)
   return (
     <>
-      {props.accountMenu && <AccountMenu handleAccountMenu={props.handleAccountMenu} />}
-      {props.loginMenu && <Login handleLoginMenu={props.handleLoginMenu}/>}
+      {accountMenu && <AccountMenu />}
+      {loginMenu && <Login />}
     </>
   );
 };

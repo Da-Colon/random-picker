@@ -10,23 +10,21 @@ import SecondaryButton from "./secondaryButton";
 import Input from "./input";
 
 const Login = (props) => {
-  const dispatchContext = useContext(DispatchContext);
+  const dispatch = useContext(DispatchContext);
   const [error, setError] = useState(null);
   const [userPassword] = useState("");
 
   const _onSubmit = async (values) => {
-    console.log(values)
     try {
-      const res = await post(
-        `${process.env.REACT_APP_ENDPOINT}/users/login`,
-        values
-      );
+
+      const res = await post(`${process.env.REACT_APP_ENDPOINT}/users/login`, values);
       const { user } = await res.json();
-      if(!localStorage.length > 0){
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-      dispatchContext({ type: "LOGGED_IN", payload: { user: user } });
-      props.handleLoginMenu();
+
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      dispatch({ type: "LOGGED_IN", payload: { user: user } });
+      dispatch({ type: "LOGIN_MENU_TOGGLE"})
+
     } catch (error) {
       setError("There was a problem signing in");
       console.log(error);
@@ -35,12 +33,13 @@ const Login = (props) => {
 
   const _closeMenu = (e) => {
     if(e.target.id === 'modal-overlay'){
-      props.handleLoginMenu();
+      dispatch({type: "LOGIN_MENU_TOGGLE"})
     }
   }
 
   return (
     <Modal _onClose={_closeMenu}>
+      {error && <Error>{error}</Error>}
       <Formik
         validationSchema={Yup.object().shape({
           username: Yup.string().required("User name is required"),
@@ -77,7 +76,7 @@ const Login = (props) => {
               onChange={handleChange}
             />
             <label className="pt-4 text-xl font-semibold" htmlFor="password">
-              Password: <span></span>
+              Password:
             </label>
             <Input
               error={errors.password}
@@ -97,8 +96,6 @@ const Login = (props) => {
           </form>
         )}
       </Formik>
-
-      {error && <Error>{error}</Error>}
     </Modal>
   );
 };

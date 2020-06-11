@@ -1,26 +1,34 @@
 import React, { useContext, useState, useEffect } from "react";
+import {useHistory} from 'react-router-dom'
 import logo from "../assets/images/logo.png";
 import { StateContext } from "../context";
+import { DispatchContext } from "../context"
 
 const Header = (props) => {
-  const context = useContext(StateContext);
-  const [user, setUser] = useState(context.user);
+  const history = useHistory();
+  const dispatch = useContext(DispatchContext)
+  const state = useContext(StateContext);
+  const [user, setUser] = useState(state.user);
 
   useEffect(() => {
-    const userData = context.user;
+    const userData = state.user;
     setUser(userData);
-  }, [context.user]);
+  }, [state.user]);
+
+  const _goHome = () => {
+    history.push('/')
+  }
 
 
   return (
     <div className="h-16 w-full bg-dc-dark text-white text-2xl flex justify-between">
-      <img onClick={props.goHome} className="w-48 cursor-pointer" alt="Logo" src={logo} />
+      <img onClick={_goHome} className="w-48 cursor-pointer" alt="Logo" src={logo} />
       {user.id && (
         <>
-          <div className="self-center" onClick={props.handleAccountMenu}>
+          <div className="self-center" onClick={() => dispatch({type: "ACCOUNT_MENU_TOGGLE"})}>
             <span className="mx-4 cursor-pointer">
               <i className="fas fa-user-circle mr-2" />
-            {window.location.pathname === "/account" && <span className="arrow-down"></span>}
+            {state.accountMenu && <span className="arrow-down"></span>}
               {user.first_name.substr(0, 1)}. {user.last_name}
             </span>
           </div>
@@ -28,8 +36,8 @@ const Header = (props) => {
       )}
       {!user.id && (
         <div className="self-center">
-          <span className="mx-4 text-center cursor-pointer" onClick={props.handleLoginMenu}>
-            {window.location.pathname === "/login" && <span className="arrow-down"></span>}
+          <span className="mx-4 text-center cursor-pointer" onClick={() => dispatch({type: "LOGIN_MENU_TOGGLE"})}>
+            {state.loginMenu && <span className="arrow-down"></span>}
             Login
           </span>
           |

@@ -5,17 +5,17 @@ import PrimaryButton from './primaryButton';
 import SecondaryButton from './secondaryButton';
 
 const AccountMenu = (props) => {
-  const dispatchContext = useContext(DispatchContext);
+  const dispatch = useContext(DispatchContext);
 
   const _handleLogout = () =>{
-    dispatchContext({ type: "LOGGED_OUT" });
+    dispatch({ type: "LOGGED_OUT" });
     localStorage.removeItem('user')
     window.location.reload();
   }
 
   const _closeMenu = (e) => {
     if(e.target.id === 'modal-overlay'){
-      props.handleAccountMenu()
+      dispatch({type: "ACCOUNT_MENU_TOGGLE"})
     }
   }
 
