@@ -4,7 +4,7 @@ import Home from '../containers/home'
 
 export default function AppRouter() {
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen">
 
     <Router>
       <Route path="/" component={Home} />
