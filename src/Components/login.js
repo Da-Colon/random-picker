@@ -7,7 +7,7 @@ import { DispatchContext } from "../context";
 import post from "../utils/post";
 import PrimaryButton from "./primaryButton";
 import SecondaryButton from "./secondaryButton";
-import Input from "./input";
+
 
 const Login = (props) => {
   const dispatch = useContext(DispatchContext);
@@ -19,7 +19,6 @@ const Login = (props) => {
 
       const res = await post(`${process.env.REACT_APP_ENDPOINT}/users/login`, values);
       const { user } = await res.json();
-
       localStorage.setItem('user', JSON.stringify(user));
       
       dispatch({ type: "LOGGED_IN", payload: { user: user } });
@@ -66,9 +65,9 @@ const Login = (props) => {
             <label className="pt-4 text-xl font-semibold" htmlFor="username">
               User Name:
             </label>
-            <Input
+            <input
               error={errors.username}
-              className="w-48 bg-gray-400"
+              className="p-2 pl-4 outline-none rounded-lg bg-gray-300"
               type="username"
               autoComplete="username"
               name="username"
@@ -78,9 +77,9 @@ const Login = (props) => {
             <label className="pt-4 text-xl font-semibold" htmlFor="password">
               Password:
             </label>
-            <Input
+            <input
               error={errors.password}
-              className="w-48 bg-gray-400"
+              className="p-2 pl-4 outline-none rounded-lg bg-gray-300"
               onChange={handleChange}
               type="password"
               name="password"
@@ -88,8 +87,8 @@ const Login = (props) => {
               value={values.password}
             />
             <div className="w-full text-right mt-4 flex flex-col">
-              <PrimaryButton type="submit">Submit</PrimaryButton>
-              <SecondaryButton onClick={props.handleLoginMenu} type="button">
+              <PrimaryButton type="submit">Login</PrimaryButton>
+              <SecondaryButton onClick={() => dispatch({type: "LOGIN_MENU_TOGGLE"})} type="button">
                 Cancel
               </SecondaryButton>
             </div>

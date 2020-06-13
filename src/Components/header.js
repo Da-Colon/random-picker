@@ -4,7 +4,7 @@ import logo from "../assets/images/logo.png";
 import { StateContext } from "../context";
 import { DispatchContext } from "../context"
 
-const Header = (props) => {
+const Header = () => {
   const history = useHistory();
   const dispatch = useContext(DispatchContext)
   const state = useContext(StateContext);
@@ -21,7 +21,7 @@ const Header = (props) => {
 
 
   return (
-    <div className="h-16 w-full bg-dc-dark text-white text-2xl flex justify-between">
+    <div className="h-16 w-full fixed bg-dc-dark text-white text-2xl flex justify-between">
       <img onClick={_goHome} className="w-48 cursor-pointer" alt="Logo" src={logo} />
       {user.id && (
         <>
@@ -37,12 +37,10 @@ const Header = (props) => {
       {!user.id && (
         <div className="self-center">
           <span className="mx-4 text-center cursor-pointer" onClick={() => dispatch({type: "LOGIN_MENU_TOGGLE"})}>
-            {state.loginMenu && <span className="arrow-down"></span>}
             Login
           </span>
           |
-          <span className="mx-4 text-center cursor-pointer">
-            {window.location.pathname === "/register" && <span className="arrow-down"></span>}
+          <span className="mx-4 text-center cursor-pointer" onClick={() => history.push("/register")}>
             Register
           </span>
         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Home from '../containers/home'
 import Spinner from '../containers/spinner'
+import Register from '../containers/register'
 
 export default function AppRouter() {
   return (
@@ -10,8 +11,7 @@ export default function AppRouter() {
     <Router>
       <Route path="/" component={Home} exact />
       <Route path="/spinner" component={Spinner} exact />
-      {/* <Route path="/signup" component={SignUp} /> */}
-
+      <Route path="/register" component={Register} exact />
     </Router>
     </div>
   )

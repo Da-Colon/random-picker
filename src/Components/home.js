@@ -4,7 +4,7 @@ import Login from "../components/login";
 import { StateContext } from "../context";
 
 const Home = () => {
-  const { user, loginMenu, accountMenu } = useContext(StateContext)
+  const { loginMenu, accountMenu } = useContext(StateContext)
   return (
     <>
       {accountMenu && <AccountMenu />}

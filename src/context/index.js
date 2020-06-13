@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+
 const user = JSON.parse(localStorage.getItem('user'))
 
 const initialState = {
@@ -7,11 +8,15 @@ const initialState = {
     id: user ? user.id : null,
     first_name: user ? user.first_name : "",
     last_name: user ? user.last_name : "",
+    instructorId: user ? user.instructorId : null,
+    isInstructor: user ? user.isInstructor : null
   },
   list: [],
   completed: [],
   loginMenu: false,
   accountMenu: false,
+  submitting: false,
+  instructorList: []
 };
 
 export const StateContext = React.createContext();
@@ -27,6 +32,10 @@ const appReducer = (state = initialState, action) => {
       return Object.assign({}, state, {loginMenu: !state.loginMenu})
     case "ACCOUNT_MENU_TOGGLE":
       return Object.assign({}, state, {accountMenu: !state.loginMenu})
+    case "SUBMITTING":
+      return Object.assign({}, state, {submitting: !state.submitting})
+    case "UPDATE_INSTRUCTOR_LIST":
+      return Object.assign({}, state, {instructorList: action.payload})
     default: {
       throw new Error(`Unhandle action type: ${action.type}`);
     }
