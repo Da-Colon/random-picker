@@ -58,10 +58,10 @@ const Login = (props) => {
           });
         }}
       >
-        {({ values, errors, handleChange, handleSubmit }) => (
+        {({ values, errors, touched, handleChange, handleSubmit }) => (
           <form className="flex flex-col" onSubmit={handleSubmit}>
-            {errors.username && <Error>{errors.username}</Error>}
-            {errors.password && <Error>{errors.password}</Error>}
+            {(errors.username && touched.username) && <Error>{errors.username}</Error>}
+            {(errors.password && touched.password) && <Error>{errors.password}</Error>}
             <label className="pt-4 text-xl font-semibold" htmlFor="username">
               User Name:
             </label>
