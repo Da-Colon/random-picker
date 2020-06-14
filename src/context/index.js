@@ -1,15 +1,14 @@
 import React, { useReducer } from "react";
 
 const user = JSON.parse(localStorage.getItem('user'))
-
 const initialState = {
   user: {
-    username: user ? user.username : "",
+    username: user ? user.user_name : "",
     id: user ? user.id : null,
     first_name: user ? user.first_name : "",
     last_name: user ? user.last_name : "",
-    instructorId: user ? user.instructorId : null,
-    isInstructor: user ? user.isInstructor : null
+    instructorId: user ? user.instructor_id : null,
+    isInstructor: user ? user.is_instructor : null
   },
   list: [],
   completed: [],

@@ -3,13 +3,16 @@ import Modal from './modal'
 import { DispatchContext } from '../context';
 import PrimaryButton from './primaryButton';
 import SecondaryButton from './secondaryButton';
+import { useHistory } from 'react-router-dom';
 
 const AccountMenu = (props) => {
+  const history = useHistory();
   const dispatch = useContext(DispatchContext);
 
   const _handleLogout = () =>{
     dispatch({ type: "LOGGED_OUT" });
     localStorage.removeItem('user')
+    history.push('/')
     window.location.reload();
   }
 

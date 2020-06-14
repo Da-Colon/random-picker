@@ -8,6 +8,7 @@ import { DispatchContext, StateContext } from "../context";
 import LoadingModal from "./loadingModal";
 import SelectInstructor from "./selectInstructor";
 import post from "../utils/post";
+import FormModal from "./formModal";
 
 const Register = () => {
   const history = useHistory();
@@ -21,7 +22,6 @@ const Register = () => {
   }, [state.submitting]);
 
   const _onSubmit = async (values) => {
-    console.log("Values", values);
     dispatch({ type: "SUBMITTING" });
     const res = await post(
       `${process.env.REACT_APP_ENDPOINT}/users/register`,
@@ -43,9 +43,7 @@ const Register = () => {
   return (
     <>
       {submitting && <LoadingModal>Submitting...</LoadingModal>}
-      <div className="bg-gray-600 h-full pt-16 w-full flex justify-center items-center">
-        <div className="bg-white w-1/2 h-full rounded-md p-4 text-center">
-          <span className="text-3xl bold">Register New Account!</span>
+       <FormModal header="Registar New Account!">
           <Formik
             validationSchema={Yup.object().shape({
               username: Yup.string().required("Required"),
@@ -214,8 +212,7 @@ const Register = () => {
               </form>
             )}
           </Formik>
-        </div>
-      </div>
+       </FormModal>
     </>
   );
 };

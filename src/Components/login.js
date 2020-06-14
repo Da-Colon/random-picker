@@ -7,22 +7,28 @@ import { DispatchContext } from "../context";
 import post from "../utils/post";
 import PrimaryButton from "./primaryButton";
 import SecondaryButton from "./secondaryButton";
+import { useHistory } from "react-router-dom";
 
 
 const Login = (props) => {
+  const history = useHistory();
   const dispatch = useContext(DispatchContext);
   const [error, setError] = useState(null);
   const [userPassword] = useState("");
 
   const _onSubmit = async (values) => {
     try {
-
       const res = await post(`${process.env.REACT_APP_ENDPOINT}/users/login`, values);
       const { user } = await res.json();
+
+      if(res.status === 200){
       localStorage.setItem('user', JSON.stringify(user));
       
       dispatch({ type: "LOGGED_IN", payload: { user: user } });
       dispatch({ type: "LOGIN_MENU_TOGGLE"})
+      history.push('/')
+      }
+      
 
     } catch (error) {
       setError("There was a problem signing in");
