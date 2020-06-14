@@ -1,6 +1,8 @@
 import React, { useReducer } from "react";
 
 const user = JSON.parse(localStorage.getItem('user'))
+const defaultClass = JSON.parse(localStorage.getItem('preferedClass'))
+
 const initialState = {
   user: {
     username: user ? user.user_name : "",
@@ -15,7 +17,8 @@ const initialState = {
   loginMenu: false,
   accountMenu: false,
   submitting: false,
-  instructorList: []
+  instructorList: [],
+  defaultClass: defaultClass ? defaultClass.classList : ""
 };
 
 export const StateContext = React.createContext();
@@ -30,7 +33,7 @@ const appReducer = (state = initialState, action) => {
     case "LOGIN_MENU_TOGGLE":
       return Object.assign({}, state, {loginMenu: !state.loginMenu})
     case "ACCOUNT_MENU_TOGGLE":
-      return Object.assign({}, state, {accountMenu: !state.loginMenu})
+      return Object.assign({}, state, {accountMenu: !state.accountMenu})
     case "SUBMITTING":
       return Object.assign({}, state, {submitting: !state.submitting})
     case "UPDATE_INSTRUCTOR_LIST":

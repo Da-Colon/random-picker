@@ -22,13 +22,17 @@ const AccountMenu = (props) => {
     }
   }
 
+  const _handleAccountMenu = () => {
+    dispatch({type: "ACCOUNT_MENU_TOGGLE"})
+  }
+
   return (
     <Modal _onClose={_closeMenu}>
       <div className="flex flex-col">
 
         <PrimaryButton >Choose ClassList</PrimaryButton>
         <PrimaryButton onClick={_handleLogout}>Logout</PrimaryButton>
-        <SecondaryButton onClick={props.handleAccountMenu}>Cancel</SecondaryButton>
+        <SecondaryButton onClick={_handleAccountMenu}>Cancel</SecondaryButton>
       
       </div>
     </Modal>

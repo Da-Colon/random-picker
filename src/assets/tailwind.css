@@ -13,3 +13,27 @@
   position: absolute;
   top:64px;
 }
+
+@keyframes animated-name {
+  0% {transform: scale(0.0)}
+  10% {transform: scale(0.1) } 
+  20% {transform: scale(0.2) }
+  30% {transform: scale(0.3) }
+  40% {transform: scale(0.4) }
+  50% {transform: scale(0.5) }
+  60% {transform: scale(0.6) }
+  70% {transform: scale(0.7) }
+  80% {transform: scale(0.8) }
+  90% {transform: scale(0.9) }
+  100% {transform: scale(1.1) }
+
+}
+
+  .animate {
+    animation: animated-name 4s linear 1;
+  }
+  
+  .tada {
+    border: 30px #193d49;
+    border-style: groove;
+  }
