@@ -20,24 +20,24 @@ export default function Spinner() {
 
   useEffect(() => {
     setStudents(state.defaultClass)
-  },[])
+  },[state.defaultClass])
 
   const spinNames = () => {
     const randomIndex = Math.floor(Math.random() * students.length);
     setName(students[randomIndex]);
   };
 
-  const addToCompleted = (haveCompleted) => {
-    // const newArray = completed.concat(haveCompleted);
-    // setCompleted(newArray);
+  const addToCompleted = (studentIndex) => {
+    const newArr = [...completed]
+    newArr.push(students[studentIndex])
+    setCompleted(newArr);
   };
 
-  const removeStudent = (index) => {
-    const newArray = [...students];
-    const person = newArray.splice(index, 1);
-    setName(person);
-    setStudents(newArray);
-    addToCompleted(person);
+  const removeStudent = (removedStudent) => {
+    const newArr = [...students]
+    setName(students[removedStudent]);
+    addToCompleted(removedStudent);
+    setStudents(newArr.filter((value, index) => index !== removedStudent));
   };
 
   const randomPicker = () => {
@@ -49,7 +49,6 @@ export default function Spinner() {
       setTimeout(() => {
         removeStudent(randomIndex);
         clearInterval(spin);
-        setCompleted(true);
         setAnimate(false);
         setfinished(true)
       }, 4000);
