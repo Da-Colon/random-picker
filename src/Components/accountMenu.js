@@ -30,7 +30,8 @@ const AccountMenu = (props) => {
     <Modal _onClose={_closeMenu}>
       <div className="flex flex-col">
 
-        <PrimaryButton >Choose ClassList</PrimaryButton>
+        <PrimaryButton onClick={() => history.push('/upload')} >Upload ClassList</PrimaryButton>
+        <PrimaryButton onClick={() => history.push('/spinner')}>Spinner</PrimaryButton>
         <PrimaryButton onClick={_handleLogout}>Logout</PrimaryButton>
         <SecondaryButton onClick={_handleAccountMenu}>Cancel</SecondaryButton>
       

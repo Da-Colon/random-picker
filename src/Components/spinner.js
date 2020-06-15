@@ -7,9 +7,9 @@ import XButton from "./xButton";
 
 const baseClassNameSpinner = "text-4xl";
 const baseClassNameContainer =
-  "w-72 h-72 rounded-full flex items-center justify-center border border-solid border-8 ";
+  "h-72 w-72 rounded-full flex items-center justify-center border border-solid border-8 border-black";
 const animateSpinner = "animate";
-const finishedBorder = baseClassNameContainer + "tada";
+const finishedBorder = "tada";
 
 export default function Spinner() {
   const state = useContext(StateContext);
@@ -41,6 +41,7 @@ export default function Spinner() {
     setName(students[removedStudent]);
     addToCompleted(removedStudent);
     setStudents(newArr.filter((value, index) => index !== removedStudent));
+    setfinished(true)
   };
 
   const randomPicker = () => {
@@ -61,8 +62,8 @@ export default function Spinner() {
   };
 
   return (
-    <div className="h-full w-full max-w-screen-xxl flex items-center justify-between pt-12">
-      <div className="w-48 h-full border-r border-solid flex flex-col p-4">
+    <div className="h-full w-full flex items-center pt-12 flex-wrap">
+      <div className="w-48 h-full border-r border-solid flex flex-col p-4 bg-dc-dark text-white">
         <PrimaryButton
           className=""
           onClick={() => setShowStudents(!showStudents)}
@@ -86,7 +87,7 @@ export default function Spinner() {
           Completed
         </PrimaryButton>
         {showCompleted && (
-          <div className="h-64 no-scroll-bar-overflow">
+          <div className="h-64 no-scroll-bar-overflow ">
             {completed.map((student) => (
               <div className="flex justify-between p-1 w-full">
                 <span className="font-bold">{student}</span>
@@ -95,15 +96,19 @@ export default function Spinner() {
           </div>
         )}
       </div>
-      <div>
+      <div className="bg-dc-dark h-full p-8 flex flex-col items-center justify-center">
+        <span className="text-4xl m-2 font-extrabold text-white" >Who's Next?</span>
+        <div className="w-64 h-48 flex bg-gray-400 justify-center items-center text-3xl font-bold inset-auto">
+              {finished && <span>{name}</span>}
+        </div>
         <PrimaryButton onClick={randomPicker}>Random Student</PrimaryButton>
       </div>
-      <div className="flex flex-col items-center justify-center h-full w-full">
+      <div className="flex flex-col items-center justify-center h-full w-72 flex-grow-2">
         <div
           className={
             !finished
               ? classnames(baseClassNameContainer)
-              : classnames(finishedBorder)
+              : classnames(baseClassNameContainer, finishedBorder)
           }
         >
           <span
