@@ -4,6 +4,7 @@ import PrimaryButton from './primaryButton'
 import {StateContext} from '../context'
 import post from '../utils/post'
 import { useHistory } from 'react-router-dom'
+import XButton from './xButton'
 
 const UploadClassList = () => {
   const history = useHistory();
@@ -87,7 +88,7 @@ const UploadClassList = () => {
             type="text"
             onChange={() => _handleChange(index)}
             />
-            <span onClick={() => _removeStudent(index)} className="text-xs text-red-700 cursor-pointer font-semibold rounded-full bg-gray-100 border p-2 border-solid border-black mr-2">X</span>
+            <XButton onClick={() => _removeStudent(index)} />
             </div>
             ))}
         </div>

@@ -37,3 +37,13 @@
     border: 30px #193d49;
     border-style: groove;
   }
+
+  .no-scroll-bar-overflow{
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+
+  }
+
+  .no-scroll-bar-overflow::-webkit-scrollbar {
+    display: none;
+  }
