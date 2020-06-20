@@ -7,17 +7,17 @@ import XButton from "./xButton";
 
 const baseClassNameSpinner = "text-4xl";
 const baseClassNameContainer =
-  "h-72 w-72 rounded-full flex items-center justify-center border border-solid border-8 border-black";
+  "h-72 w-72 rounded-full flex items-center justify-center";
 const animateSpinner = "animate";
 const finishedBorder = "tada";
 
 export default function Spinner() {
   const state = useContext(StateContext);
   const [students, setStudents] = useState([]);
+  const [completed, setCompleted] = useState([]);
+  const [name, setName] = useState("");
   const [animate, setAnimate] = useState(false);
   const [finished, setfinished] = useState(false);
-  const [name, setName] = useState("");
-  const [completed, setCompleted] = useState([]);
   const [showStudents, setShowStudents] = useState(false);
   const [showCompleted, setShowCompleted] = useState(false);
 
@@ -41,7 +41,7 @@ export default function Spinner() {
     setName(students[removedStudent]);
     addToCompleted(removedStudent);
     setStudents(newArr.filter((value, index) => index !== removedStudent));
-    setfinished(true)
+    setfinished(true);
   };
 
   const randomPicker = () => {
@@ -97,9 +97,11 @@ export default function Spinner() {
         )}
       </div>
       <div className="bg-dc-dark h-full p-8 flex flex-col items-center justify-center">
-        <span className="text-4xl m-2 font-extrabold text-white" >Who's Next?</span>
+        <span className="text-4xl m-2 font-extrabold text-white">
+          Who's Next?
+        </span>
         <div className="w-64 h-48 flex bg-gray-400 justify-center items-center text-3xl font-bold inset-auto">
-              {finished && <span>{name}</span>}
+          {finished && <span>{name}</span>}
         </div>
         <PrimaryButton onClick={randomPicker}>Random Student</PrimaryButton>
       </div>
@@ -111,6 +113,44 @@ export default function Spinner() {
               : classnames(baseClassNameContainer, finishedBorder)
           }
         >
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform rotate-45">
+              {name}
+            </span>
+          )}
+
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -translate-y-24 translate-x-24 rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -translate-y-12 translate-x-12 rotate-45">
+              {name}
+            </span>
+          )}
+
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -translate-y-6 translate-x-6 rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform translate-y-24 -translate-x-24 rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform translate-y-12 -translate-x-12 rotate-45">
+              {name}
+            </span>
+          )}
+
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform translate-y-6 -translate-x-6 rotate-45">
+              {name}
+            </span>
+          )}
           <span
             className={
               !animate
@@ -120,6 +160,43 @@ export default function Spinner() {
           >
             {name}
           </span>
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -rotate-45">
+              {name}
+            </span>
+          )}
+
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -translate-y-24 -translate-x-24 -rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -translate-y-12 -translate-x-12 -rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform -translate-y-6 -translate-x-6 -rotate-45">
+              {name}
+            </span>
+          )}
+
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform translate-y-24 translate-x-24 -rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform translate-y-12 translate-x-12 -rotate-45">
+              {name}
+            </span>
+          )}
+          {!finished && (
+            <span className="absolute text-2xl tracking-wider transform translate-y-6 translate-x-6 -rotate-45">
+              {name}
+            </span>
+          )}
         </div>
       </div>
     </div>
