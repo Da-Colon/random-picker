@@ -1,12 +1,12 @@
 import React, { useState, useContext} from "react";
 import { Formik } from "formik";
-import Modal from "./modal";
+import Modal from "./views/modal";
 import * as Yup from "yup";
-import Error from "./formError";
+import Error from "./views/formError";
 import { DispatchContext } from "../context";
 import post from "../utils/post";
-import PrimaryButton from "./primaryButton";
-import SecondaryButton from "./secondaryButton";
+import PrimaryButton from "./views/primaryButton";
+import SecondaryButton from "./views/secondaryButton";
 import { useHistory } from "react-router-dom";
 
 
@@ -22,19 +22,34 @@ const Login = (props) => {
       const { user } = await res.json();
 
       if(res.status === 200){
-      localStorage.setItem('user', JSON.stringify(user));
-      
-      dispatch({ type: "LOGGED_IN", payload: { user: user } });
-      dispatch({ type: "LOGIN_MENU_TOGGLE"})
-      history.push('/')
+        localStorage.setItem('user', JSON.stringify(user));
+        dispatch({ type: "LOGGED_IN", payload: { user: user } });
+        dispatch({ type: "LOGIN_MENU_TOGGLE"})
+        await getDefaultClass(user)
+        history.push('/')
+        window.location.reload()
+
       }
-      
 
     } catch (error) {
       setError("There was a problem signing in");
       console.log(error);
     }
   };
+
+  const getDefaultClass = async (user) => {
+    try{
+      const res = await post(`${process.env.REACT_APP_ENDPOINT}/class/getdefaultclass`, user)
+      const data = await res.json();
+      if(res.status === 200){
+        localStorage.removeItem('prefered_class')
+        localStorage.setItem('prefered_class', JSON.stringify(data))
+      }
+    } catch (error){
+      console.log(error)
+      return;
+    }
+  }
 
   const _closeMenu = (e) => {
     if(e.target.id === 'modal-overlay'){

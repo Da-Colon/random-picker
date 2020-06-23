@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
-import FormModal from './formModal'
-import PrimaryButton from './primaryButton'
+import FormModal from './views/formModal'
+import PrimaryButton from './views/primaryButton'
 import {StateContext} from '../context'
 import post from '../utils/post'
 import { useHistory } from 'react-router-dom'
-import XButton from './xButton'
+import XButton from './views/xButton'
 
 const UploadClassList = () => {
   const history = useHistory();
@@ -40,7 +40,7 @@ const UploadClassList = () => {
     const newClass = {
       className: className,
       classList: students,
-      userId: user.isInstructor ? user.id : user.instructorId,
+      createdById: user.id
     }
 
     const response = await post(`${process.env.REACT_APP_ENDPOINT}/class/newclass`, newClass)
@@ -48,7 +48,7 @@ const UploadClassList = () => {
       localStorage.setItem('preferedClass', JSON.stringify(newClass))
       history.push('/')
     } else{
-      // set an error here. 
+      console.log("ERROR adding new class.")
     }
   }
 

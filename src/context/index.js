@@ -1,7 +1,8 @@
 import React, { useReducer } from "react";
 
 const user = JSON.parse(localStorage.getItem('user'))
-const defaultClass = JSON.parse(localStorage.getItem('preferedClass'))
+const defaultClass = JSON.parse(localStorage.getItem('prefered_class'))
+
 
 const initialState = {
   user: {
@@ -9,7 +10,6 @@ const initialState = {
     id: user ? user.id : null,
     first_name: user ? user.first_name : "",
     last_name: user ? user.last_name : "",
-    instructorId: user ? user.instructor_id : null,
     isInstructor: user ? user.is_instructor : null
   },
   list: [],
@@ -18,7 +18,7 @@ const initialState = {
   accountMenu: false,
   submitting: false,
   instructorList: [],
-  defaultClass: defaultClass ? defaultClass.classList : ""
+  defaultClass: defaultClass ? defaultClass.class_list : ["Your Next!", "Who's Next!?", "Your Next!", "Who's Next!?", "Your Next!", "Who's Next!?", "Your Next!", "Who's Next!?"]
 };
 
 export const StateContext = React.createContext();

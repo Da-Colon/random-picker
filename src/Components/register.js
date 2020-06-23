@@ -2,20 +2,18 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
-import PrimaryButton from "./primaryButton";
-import Error from "./formError";
+import PrimaryButton from "./views/primaryButton";
+import Error from "./views/formError";
 import { DispatchContext, StateContext } from "../context";
-import LoadingModal from "./loadingModal";
-import SelectInstructor from "./selectInstructor";
+import LoadingModal from "./views/loadingModal";
 import post from "../utils/post";
-import FormModal from "./formModal";
+import FormModal from "./views/formModal";
 
 const Register = () => {
   const history = useHistory();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
   const [submitting, setSubmitting] = useState(state.submitting);
-  const [isDir, setDir] = useState(false);
 
   useEffect(() => {
     setSubmitting(state.submitting);
@@ -57,8 +55,7 @@ const Register = () => {
               password: "",
               firstName: "",
               lastName: "",
-              isInstructor: false,
-              instructorId: undefined,
+              isInstructor: false
             }}
             onSubmit={(values) => {
               _onSubmit({
@@ -67,8 +64,7 @@ const Register = () => {
                 password: values.password,
                 firstName: values.firstName,
                 lastName: values.lastName,
-                isInstructor: values.isInstructor,
-                instructorId: values.instructorId,
+                isInstructor: values.isInstructor
               });
             }}
           >
@@ -135,35 +131,17 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </label>
-
-                {!isDir && (
                   <div className="pt-8 text-xl font-semibold text-center pb-4">
                     Are you the instructor?
                   </div>
-                )}
-                {isDir && (
-                  <div className="pt-8 text-xl font-semibold text-center pb-4">
-                    Choose an instructor{" "}
-                    <span
-                      className="text-blue-400 text-sm cursor-pointer"
-                      onClick={() => setDir(false)}
-                    >
-                      {" "}
-                      (Just kidding, I'm an instructor...)
-                    </span>
-                  </div>
-                )}
-                {errors.isInstructor && touched.isInstructor && (
-                  <Error className="text-center">{errors.isInstructor}</Error>
-                )}
+              
                 <div className={"flex justify-center"}>
-                  {!isDir && (
+                  
                     <Field name="isInstructor">
                       {({ field }) => (
                         <>
                           <label
                             className="text-md mx-4 font-semibold"
-                            onClick={() => setDir(false)}
                           >
                             <input
                               {...field}
@@ -172,14 +150,12 @@ const Register = () => {
                               value="true"
                               type="radio"
                               onChange={handleChange}
-                              onClick={() => setDir(false)}
                               checked={field.value === "true"}
                             />
                             Yes
                           </label>
                           <label
                             className="text-md mx-4 font-semibold"
-                            onClick={() => setDir(true)}
                           >
                             <input
                               {...field}
@@ -188,7 +164,6 @@ const Register = () => {
                               value="false"
                               type="radio"
                               onChange={handleChange}
-                              onClick={() => setDir(true)}
                               checked={field.value === "false"}
                             />
                             No
@@ -196,15 +171,6 @@ const Register = () => {
                         </>
                       )}
                     </Field>
-                  )}
-                  {isDir && (
-                    <SelectInstructor
-                      className="bg-green-200 p-1 px-4 rounded-md text-lg"
-                      name="instructorId"
-                      value={values.instructorId}
-                      onChange={handleChange}
-                    />
-                  )}
                 </div>
                 <PrimaryButton className="w-48 self-center my-8" type="submit">
                   Register

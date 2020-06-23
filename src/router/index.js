@@ -7,7 +7,7 @@ import UploadClassList from '../containers/uploadClassList'
 
 export default function AppRouter() {
   return (
-    <div className="h-screen max-w-screen-xxl flex justify-center">
+    <div className="h-screen flex justify-center">
 
     <Router>
       <Route path="/" component={Home} exact />

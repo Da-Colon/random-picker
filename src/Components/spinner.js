@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import classnames from "classnames";
-import PrimaryButton from "./primaryButton";
-import "./Styles/spinner.css";
+import PrimaryButton from "./views/primaryButton";
 import { StateContext } from "../context";
-import XButton from "./xButton";
+import XButton from "./views/xButton";
 
 const baseClassNameSpinner = "text-4xl";
 const baseClassNameContainer =
