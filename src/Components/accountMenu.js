@@ -27,7 +27,7 @@ const AccountMenu = (props) => {
 
   const _handleLogout = () =>{
     dispatch({ type: "LOGGED_OUT" });
-    localStorage.removeItem('user')
+    localStorage.clear()
     history.push('/')
     window.location.reload();
   }
