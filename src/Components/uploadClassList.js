@@ -45,7 +45,7 @@ const UploadClassList = () => {
 
     const response = await post(`${process.env.REACT_APP_ENDPOINT}/class/newclass`, newClass)
     if(response.status === 200){
-      localStorage.setItem('preferedClass', JSON.stringify(newClass))
+      localStorage.setItem('prefered_class', JSON.stringify(newClass))
       history.push('/')
     } else{
       console.log("ERROR adding new class.")
