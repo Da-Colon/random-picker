@@ -4,6 +4,7 @@ import Home from '../containers/home'
 import Spinner from '../containers/spinner'
 import Register from '../containers/register'
 import UploadClassList from '../containers/uploadClassList'
+import EditClass from '../containers/editClass'
 
 export default function AppRouter() {
   return (
@@ -14,6 +15,7 @@ export default function AppRouter() {
       <Route path="/spinner" component={Spinner} exact />
       <Route path="/register" component={Register} exact />
       <Route path="/upload" component={UploadClassList} exact />
+      <Route path="/edit" component={EditClass} exact />
     </Router>
     </div>
   )
