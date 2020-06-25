@@ -27,12 +27,9 @@ const UploadClassList = () => {
   }
 
   const _handleChange = (e, index) => {
-
     let newArr = [...students]
     newArr[index] = e.currentTarget.value
-
     setStudents(newArr)
-
   }
 
   const _handleClassListSubmit = async (e) => {
@@ -43,12 +40,30 @@ const UploadClassList = () => {
       createdById: user.id
     }
 
-    const response = await post(`${process.env.REACT_APP_ENDPOINT}/class/newclass`, newClass)
+    const response = await post(`${process.env.REACT_APP_ENDPOINT}/class/new`, newClass)
     if(response.status === 200){
-      localStorage.setItem('prefered_class', JSON.stringify(newClass))
+      const data = await response.json()
+      localStorage.setItem('prefered_class', JSON.stringify(data))
+      _handleUpdateUserPreference(data.id)
       history.push('/')
+      window.location.reload();
     } else{
       console.log("ERROR adding new class.")
+    }
+  }
+
+  const _handleUpdateUserPreference = async (id) => {
+    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/users/default/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({userId: user.id})
+    })
+    if(response.status === 200){
+      const data = await response.json();
+      localStorage.removeItem('user')
+      localStorage.getItem('user', JSON.stringify(data))
     }
   }
 
@@ -79,14 +94,13 @@ const UploadClassList = () => {
         <div className="flex items-center justify-center flex-wrap">
 
           {students.map((student, index) => (
-            <div>
+            <div key={index}>
             <input
-            name="edit-class-list"
-            key={index}
-            className="bg-blue-100 m-2 p-1 px-2 rounded-md"
-            value={student}
-            type="text"
-            onChange={() => _handleChange(index)}
+              name="edit-class-list"
+              className="bg-blue-100 m-2 p-1 px-2 rounded-md"
+              value={student}
+              type="text"
+              onChange={() => _handleChange(index)}
             />
             <XButton onClick={() => _removeStudent(index)} />
             </div>

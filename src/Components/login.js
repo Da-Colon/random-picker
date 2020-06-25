@@ -25,7 +25,9 @@ const Login = (props) => {
         localStorage.setItem('user', JSON.stringify(user));
         dispatch({ type: "LOGGED_IN", payload: { user: user } });
         dispatch({ type: "LOGIN_MENU_TOGGLE"})
-        await getDefaultClass(user)
+        if(user.prefered_class_list !== null){
+          await getDefaultClass(user)
+        }
         history.push('/')
         window.location.reload()
 

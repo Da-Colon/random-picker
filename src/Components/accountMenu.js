@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Modal from './views/modal'
-import { DispatchContext, StateContext } from '../context';
+import { DispatchContext, StateContext} from '../context';
 import PrimaryButton from './views/primaryButton';
 import SecondaryButton from './views/secondaryButton';
 import { useHistory } from 'react-router-dom';
 
 const AccountMenu = (props) => {
   const history = useHistory();
-  const state = useContext(StateContext);
+  const {user} = useContext(StateContext)
   const dispatch = useContext(DispatchContext);
-  const [showClassList, setShowClassList] = useState(true);
+  const [showClassList, setShowClassList] = useState(false);
   const [classLists, setClassLists] = useState([])
   const [optionValue, setOptionValue] = useState('0')
 
@@ -45,12 +45,28 @@ const AccountMenu = (props) => {
   const _setDefaultClass = (e) => {
     setOptionValue(e.target.value);
     for(let i = 0; i < classLists.length; i++){
-      console.log(classLists[i].id.toString() === e.target.value)
       if(classLists[i].id.toString() === e.target.value){
         localStorage.removeItem('prefered_class');
         localStorage.setItem('prefered_class', JSON.stringify(classLists[i]))
+        _handleUpdateUserPreference(classLists[i].id)
+        dispatch({type: "UPDATE_USER_PREFERED_CLASS_ID", payload: classLists[i].id})
         window.location.reload();
       }
+    }
+  }
+
+  const _handleUpdateUserPreference = async (id) => {
+    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/users/default/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({userId: user.id})
+    })
+    if(response.status === 200){
+      const data = await response.json();
+      localStorage.removeItem('user')
+      localStorage.getItem('user', JSON.stringify(data))
     }
   }
   
@@ -66,6 +82,10 @@ const AccountMenu = (props) => {
     _handleAccountMenu();
   }
 
+  const _handleEditClick = () => {
+    history.push('./edit')
+    _handleAccountMenu();
+  }
 
 
   return (
@@ -81,7 +101,7 @@ const AccountMenu = (props) => {
             </select>
           )}
           </div>
-        <PrimaryButton disabled={state.defaultClass === null ? true : false }>Edit ClassList</PrimaryButton>
+        <PrimaryButton onClick={_handleEditClick} disabled={!localStorage.getItem('prefered_class') ? true : false }>Edit ClassList</PrimaryButton>
         <PrimaryButton onClick={_handleSpinnerClick}>Spinner</PrimaryButton>
         <PrimaryButton onClick={_handleLogout}>Logout</PrimaryButton>
         <SecondaryButton onClick={_handleAccountMenu}>Cancel</SecondaryButton>
