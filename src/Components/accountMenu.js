@@ -19,7 +19,7 @@ const AccountMenu = (props) => {
 
   const getClassLists = async () => {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/class/list/all`, {
-      method: 'GET'
+      method: 'POST'
     })
     const classes = await response.json();
     await setClassLists(classes)
