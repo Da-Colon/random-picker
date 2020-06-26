@@ -5,7 +5,7 @@ import { StateContext } from '../context';
 import AccountMenu from '../components/accountMenu';
 
 
-export default class spinner extends React.Component {
+export default class Spinner extends React.Component {
   static contextType = StateContext;
 
   render = () => {
