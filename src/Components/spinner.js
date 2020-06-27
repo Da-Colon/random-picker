@@ -61,10 +61,10 @@ export default function Spinner() {
   };
 
   return (
-    <div className="h-full w-full flex items-center pt-12 flex-wrap">
-      <div className="w-48 h-full border-r border-solid flex flex-col p-4 bg-dc-dark text-white">
+    <div className="h-full w-full flex pt-16 flex-wrap bg-dc-dark">
+      <div className="max-w-xs border-r border-solid flex flex-col bg-dc-dark text-white items-center flex-auto">
         <PrimaryButton
-          className=""
+          className="w-48"
           onClick={() => setShowStudents(!showStudents)}
         >
           Waiting
@@ -72,7 +72,7 @@ export default function Spinner() {
         {showStudents && (
           <div className="h-64 no-scroll-bar-overflow">
             {students.map((student, index) => (
-              <div key={student} className="flex justify-between p-1 w-full">
+              <div key={student} className="flex justify-between p-1 m-1 w-full">
                 <span>{student}</span>
                 <XButton onClick={() => removeStudent(index)} />
               </div>
@@ -80,13 +80,13 @@ export default function Spinner() {
           </div>
         )}
         <PrimaryButton
-          className=""
+          className="w-48"
           onClick={() => setShowCompleted(!showCompleted)}
         >
           Completed
         </PrimaryButton>
         {showCompleted && (
-          <div className="h-64 no-scroll-bar-overflow ">
+          <div className="h-48 no-scroll-bar-overflow ">
             {completed.map((student) => (
               <div key={student} className="flex justify-between p-1 w-full">
                 <span className="font-bold">{student}</span>
@@ -95,7 +95,10 @@ export default function Spinner() {
           </div>
         )}
       </div>
-      <div className="bg-dc-dark h-full p-8 flex flex-col items-center justify-center">
+      <div className="bg-dc-dark h-full flex flex-col items-center justify-center flex-auto">
+        <div className="text-white text-left block">
+          <span>Waiting: {students.length}</span> | <span>Completed: {completed.length}</span>
+        </div>
         <span className="text-4xl m-2 font-extrabold text-white">
           Who's Next?
         </span>
@@ -104,7 +107,7 @@ export default function Spinner() {
         </div>
         <PrimaryButton onClick={randomPicker}>Random Student</PrimaryButton>
       </div>
-      <div className="flex flex-col items-center justify-center h-full w-72 flex-grow-2">
+      <div className="flex flex-col bg-gray-100 items-center justify-center h-full w-72 flex-grow-2 no-scroll-bar-overflowx">
         <div
           className={
             !finished

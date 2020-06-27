@@ -41,7 +41,7 @@ const Register = () => {
   return (
     <>
       {submitting && <LoadingModal>Submitting...</LoadingModal>}
-       <FormModal header="Registar New Account!">
+       <FormModal header="Register New Account!">
           <Formik
             validationSchema={Yup.object().shape({
               username: Yup.string().required("Required"),
@@ -70,10 +70,10 @@ const Register = () => {
           >
             {({ values, errors, touched, handleChange, handleSubmit }) => (
               <form
-                className="flex flex-col text-left mx-12 pt-4"
+                className="flex flex-col text-left pt-4"
                 onSubmit={handleSubmit}
               >
-                <label className="pt-4 text-xl font-semibold flex justify-between">
+                <label className="pt-4 text-xl font-semibold flex justify-between flex-wrap">
                   Username:
                   {errors.username && touched.username && (
                     <Error>{errors.username}</Error>
@@ -88,7 +88,7 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </label>
-                <label className="pt-4 text-xl font-semibold flex justify-between">
+                <label className="pt-4 text-xl font-semibold flex justify-between flex-wrap">
                   Password:
                   {errors.password && touched.password && (
                     <Error>{errors.password}</Error>
@@ -103,7 +103,7 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </label>
-                <label className="pt-4 text-xl font-semibold flex justify-between">
+                <label className="pt-4 text-xl font-semibold flex justify-between flex-wrap">
                   First Name:
                   {errors.firstName && touched.firstName && (
                     <Error>{errors.firstName}</Error>
@@ -117,7 +117,7 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </label>
-                <label className="pt-4 text-xl font-semibold flex justify-between">
+                <label className="pt-4 text-xl font-semibold flex justify-between flex-wrap">
                   Last Name:
                   {errors.lastName && touched.lastName && (
                     <Error>{errors.lastName}</Error>

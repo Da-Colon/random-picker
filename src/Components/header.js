@@ -21,13 +21,13 @@ const Header = () => {
 
 
   return (
-    <div className="h-16 w-full fixed bg-dc-dark text-white text-2xl flex justify-between">
+    <div className="h-16 w-full fixed bg-dc-dark text-white text-xl flex justify-between">
       <img onClick={_goHome} className="w-48 cursor-pointer" alt="Logo" src={logo} />
       {user.id && (
         <>
           <div className="self-center" onClick={() => dispatch({type: "ACCOUNT_MENU_TOGGLE"})}>
-            <span className="mx-4 cursor-pointer">
-              <i className="fas fa-user-circle mr-2" />
+            <span className="mx-2 cursor-pointer">
+              <i className="fas fa-user-circle mr-1" />
             {state.accountMenu && <span className="arrow-down"></span>}
               {user.first_name.substr(0, 1)}. {user.last_name}
             </span>
