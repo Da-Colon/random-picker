@@ -5,7 +5,7 @@ import Login from "../components/login";
 import { StateContext } from "../context";
 
 const Home = () => {
-  const { loginMenu, accountMenu, user } = useContext(StateContext)
+  const { loginMenu, accountMenu} = useContext(StateContext)
   return (
     <>
       {accountMenu && <AccountMenu />}
@@ -15,7 +15,7 @@ const Home = () => {
           Leave the choosing to <span className="font-extrabold">Who's Next?</span> and have a random student be chosen at random from 
           your class list to partcipate in your lesson!
         </div>
-        <img className="max-w-lg shadow-xl rounded-full p-8 my-4" src={demo} />
+        <img alt="demo" className="max-w-lg shadow-xl rounded-full p-8 my-4" src={demo} />
       </div>
     </>
   );
