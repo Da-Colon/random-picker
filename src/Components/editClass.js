@@ -4,6 +4,7 @@ import { StateContext } from '../context'
 import XButton from './views/xButton'
 import PrimaryButton from './views/primaryButton'
 import { useHistory } from 'react-router-dom'
+import SecondaryButton from './views/secondaryButton'
 
 const cohort = JSON.parse(localStorage.getItem('prefered_class'))
 
@@ -33,9 +34,18 @@ const EditClass = () => {
     setStudents(newArr)
   }
 
+  const _addStudent = (e) => {
+    e.preventDefault();
+    let newArr = [...students]
+    newArr.push("")
+    setStudents(newArr)
+  }
+
   const _handleClassListSubmit = async (e) => {
     e.preventDefault()
-    const updatedClassList = { className: className, classList: students, editedBy: user.id }
+    let newArr = [...students]
+    const filteredNames = newArr.filter((students => students !== ""))
+    const updatedClassList = { className: className, classList: filteredNames, editedBy: user.id }
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/class/edit/${cohort.id}`, {
       method: 'PUT',
       headers: {
@@ -83,6 +93,9 @@ const EditClass = () => {
             </div>
             ))}
         </div>
+        <SecondaryButton onClick={_addStudent} className="m-2 p-1 px-2 w-48 self-center">
+          <i className="fas fa-plus" /> Add Student
+        </SecondaryButton>
         <div>
         <PrimaryButton type="submit">Save</PrimaryButton>
         </div>

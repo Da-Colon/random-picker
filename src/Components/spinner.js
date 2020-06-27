@@ -72,7 +72,7 @@ export default function Spinner() {
         {showStudents && (
           <div className="h-64 no-scroll-bar-overflow">
             {students.map((student, index) => (
-              <div className="flex justify-between p-1 w-full">
+              <div key={student} className="flex justify-between p-1 w-full">
                 <span>{student}</span>
                 <XButton onClick={() => removeStudent(index)} />
               </div>
@@ -88,7 +88,7 @@ export default function Spinner() {
         {showCompleted && (
           <div className="h-64 no-scroll-bar-overflow ">
             {completed.map((student) => (
-              <div className="flex justify-between p-1 w-full">
+              <div key={student} className="flex justify-between p-1 w-full">
                 <span className="font-bold">{student}</span>
               </div>
             ))}

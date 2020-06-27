@@ -5,6 +5,7 @@ import {StateContext} from '../context'
 import post from '../utils/post'
 import { useHistory } from 'react-router-dom'
 import XButton from './views/xButton'
+import SecondaryButton from './views/secondaryButton'
 
 const UploadClassList = () => {
   const history = useHistory();
@@ -33,14 +34,17 @@ const UploadClassList = () => {
   }
 
   const _handleClassListSubmit = async (e) => {
+    let newArr = [...students]
+    const filteredNames = newArr.filter((students => students !== ""))
     e.preventDefault();
     const newClass = {
       className: className,
-      classList: students,
+      classList: filteredNames,
       createdById: user.id
     }
 
     const response = await post(`${process.env.REACT_APP_ENDPOINT}/class/new`, newClass)
+    
     if(response.status === 200){
       const data = await response.json()
       localStorage.setItem('prefered_class', JSON.stringify(data))
@@ -50,6 +54,13 @@ const UploadClassList = () => {
     } else{
       console.log("ERROR adding new class.")
     }
+  }
+
+  const _addStudent = (e) => {
+    e.preventDefault();
+    let newArr = [...students]
+    newArr.push("")
+    setStudents(newArr)
   }
 
   const _handleUpdateUserPreference = async (id) => {
@@ -100,12 +111,15 @@ const UploadClassList = () => {
               className="bg-blue-100 m-2 p-1 px-2 rounded-md"
               value={student}
               type="text"
-              onChange={() => _handleChange(index)}
+              onChange={(e) => _handleChange(e, index)}
             />
             <XButton onClick={() => _removeStudent(index)} />
             </div>
             ))}
         </div>
+        <SecondaryButton onClick={_addStudent} className="m-2 p-1 px-2 w-48 self-center">
+          <i className="fas fa-plus" /> Add Student
+        </SecondaryButton>
         <div>
         <PrimaryButton type="submit">Save</PrimaryButton>
         </div>
