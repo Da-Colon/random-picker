@@ -87,7 +87,8 @@ module.exports = {
       },
       dc: {
         light: '#16A7A2',
-        dark: '#193d49'
+        dark: '#193d49',
+        gold: '#fede49'
       },
       blue: {
         100: '#ebf8ff',
@@ -352,6 +353,7 @@ module.exports = {
     },
     minWidth: {
       '0': '0',
+      xxs: '18.75rem',
       xs: '20rem',
       sm: '24rem',
       md: '28rem',

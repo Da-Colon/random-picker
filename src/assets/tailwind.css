@@ -41,9 +41,15 @@
   .no-scroll-bar-overflow{
     overflow-y: scroll;
     -ms-overflow-style: none;
-
+  }
+  .no-scroll-bar-overflowx{
+    overflow-x: scroll;
+    -ms-overflow-style: none;
   }
 
   .no-scroll-bar-overflow::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scroll-bar-overflowx::-webkit-scrollbar {
     display: none;
   }

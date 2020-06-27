@@ -18,7 +18,7 @@ const initialState = {
   accountMenu: false,
   submitting: false,
   instructorList: [],
-  defaultClass: defaultClass ? defaultClass.class_list : ["Your Next!", "Who's Next!?", "Your Next!", "Who's Next!?", "Your Next!", "Who's Next!?", "Your Next!", "Who's Next!?"]
+  defaultClass: defaultClass ? defaultClass.class_list : ["Who's Next!?", "You're Next!", "Who's Next!?", "I'm Next!", "He's Next!", "She's Next!", "Who's Next!?", "You're Next!", "Who's Next!?", "I'm Next!", "He's Next!", "She's Next!", "Who's Next!?", "You're Next!", "Who's Next!?", "I'm Next!", "He's Next!", "She's Next!", "Who's Next!?", "You're Next!", "Who's Next!?", "I'm Next!", "He's Next!", "She's Next!", "You're Next!", "You're Next!", "You're Next!"]
 };
 
 export const StateContext = React.createContext();
