@@ -27,7 +27,7 @@ export default function AppRouter() {
   }, [pathName, user.id]);
 
   return (
-    <div className="h-screen flex justify-center">
+    <div className="h-screen">
       <Router>
         <Route path="/" component={Home} exact />
         <Route path="/register" component={Register} exact />
