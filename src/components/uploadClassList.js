@@ -95,6 +95,9 @@ const UploadClassList = () => {
     <FormModal header="Upload CSV from Schoology">
       <input className="bg-gray-200 mr-2" type="file" onChange={(e) => setFile(e.target.files[0])} />
       <PrimaryButton onClick={_handleUpLoad}>Upload</PrimaryButton>
+      <div className="text-blue-700 text-sm cursor-pointer tracking-wide" onClick={() => history.push('/instructions')}>
+        Click Here for Instuctions
+      </div>
 
       {students.length > 0 && (
         <form className="flex flex-col" onSubmit={_handleClassListSubmit}>
