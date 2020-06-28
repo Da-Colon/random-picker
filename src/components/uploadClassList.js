@@ -36,9 +36,9 @@ const UploadClassList = () => {
   };
 
   const _handleClassListSubmit = async (e) => {
+    e.preventDefault();
     let newArr = [...students];
     const filteredNames = newArr.filter((students) => students !== "");
-    e.preventDefault();
     const newClass = {
       className: className,
       classList: filteredNames,
