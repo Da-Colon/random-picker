@@ -1,25 +1,26 @@
 import React, { useState, useContext } from "react";
 import FormModal from "./views/formModal";
 import PrimaryButton from "./views/primaryButton";
-import { StateContext } from "../context";
+import { StateContext, DispatchContext } from "../context";
 import post from "../utils/post";
 import { useHistory } from "react-router-dom";
 import XButton from "./views/xButton";
 import SecondaryButton from "./views/secondaryButton";
+import LoadingModal from "./views/loadingModal";
 
 const UploadClassList = () => {
   const history = useHistory();
   const [students, setStudents] = useState([]);
   const [className, setClassName] = useState("");
   const [file, setFile] = useState(undefined);
-  const { user } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext)
+  const { user, submitting } = useContext(StateContext);
 
   const _handleUpLoad = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
-    const response = await fetch(
-      `${process.env.REACT_APP_ENDPOINT}/upload-csv`,
+    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/upload-csv`,
       {
         method: "POST",
         body: formData,
@@ -37,6 +38,7 @@ const UploadClassList = () => {
 
   const _handleClassListSubmit = async (e) => {
     e.preventDefault();
+    dispatch({ type: "SUBMITTING" })
     let newArr = [...students];
     const filteredNames = newArr.filter((students) => students !== "");
     const newClass = {
@@ -44,20 +46,18 @@ const UploadClassList = () => {
       classList: filteredNames,
       createdById: user.id,
     };
-
-    const response = await post(
-      `${process.env.REACT_APP_ENDPOINT}/class/new`,
-      newClass
-    );
+    const response = await post(`${process.env.REACT_APP_ENDPOINT}/class/new`, newClass);
 
     if (response.status === 200) {
       const data = await response.json();
       localStorage.setItem("prefered_class", JSON.stringify(data));
       _handleUpdateUserPreference(data.id);
+      setTimeout(() => { dispatch({ type: "SUBMITTING" }) }, 2000);
       history.push("/");
       window.location.reload();
     } else {
       console.log("ERROR adding new class.");
+      dispatch({ type: "SUBMITTING" })
     }
   };
 
@@ -69,8 +69,7 @@ const UploadClassList = () => {
   };
 
   const _handleUpdateUserPreference = async (id) => {
-    const response = await fetch(
-      `${process.env.REACT_APP_ENDPOINT}/users/default/${id}`,
+    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/users/default/${id}`,
       {
         method: "PUT",
         headers: {
@@ -92,6 +91,8 @@ const UploadClassList = () => {
   };
 
   return (
+    <>
+    {submitting && <LoadingModal>Saving...</LoadingModal>}
     <FormModal header="Upload CSV from Schoology">
       <input className="bg-gray-200 mr-2" type="file" onChange={(e) => setFile(e.target.files[0])} />
       <PrimaryButton onClick={_handleUpLoad}>Upload</PrimaryButton>
@@ -141,6 +142,7 @@ const UploadClassList = () => {
         </form>
       )}
     </FormModal>
+    </>
   );
 };
 

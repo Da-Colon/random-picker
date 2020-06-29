@@ -4,10 +4,11 @@ import { DispatchContext, StateContext} from '../context';
 import PrimaryButton from './views/primaryButton';
 import SecondaryButton from './views/secondaryButton';
 import { useHistory } from 'react-router-dom';
+import LoadingModal from './views/loadingModal';
 
 const AccountMenu = (props) => {
   const history = useHistory();
-  const {user} = useContext(StateContext)
+  const {user, submitting} = useContext(StateContext)
   const dispatch = useContext(DispatchContext);
   const [showClassList, setShowClassList] = useState(false);
   const [classLists, setClassLists] = useState([])
@@ -18,9 +19,7 @@ const AccountMenu = (props) => {
   },[])
 
   const getClassLists = async () => {
-    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/class/list/all`, {
-      method: 'POST'
-    })
+    const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/class/list/all`, { method: 'POST' })
     const classes = await response.json();
     await setClassLists(classes)
   }
@@ -44,14 +43,19 @@ const AccountMenu = (props) => {
 
   const _setDefaultClass = (e) => {
     setOptionValue(e.target.value);
+    dispatch({ type: "SUBMITTING" });
     for(let i = 0; i < classLists.length; i++){
       if(classLists[i].id.toString() === e.target.value){
+        setTimeout(() => { dispatch({ type: "SUBMITTING" }) }, 2000);
         localStorage.removeItem('prefered_class');
         localStorage.setItem('prefered_class', JSON.stringify(classLists[i]))
         _handleUpdateUserPreference(classLists[i].id)
         dispatch({type: "UPDATE_USER_PREFERED_CLASS_ID", payload: classLists[i].id})
         window.location.reload();
+      } else {
+        dispatch({ type: "SUBMITTING" });
       }
+
     }
   }
 
@@ -69,8 +73,6 @@ const AccountMenu = (props) => {
       localStorage.getItem('user', JSON.stringify(data))
     }
   }
-  
-  //Add 'Load Message Notification for successful default class list change'
 
   const _handleUploadClick = () => {
     history.push('/upload')
@@ -89,6 +91,8 @@ const AccountMenu = (props) => {
 
 
   return (
+    <>
+    {submitting && <LoadingModal>Changing Default...</LoadingModal>}
     <Modal _onClose={_closeMenu}>
       <div className="flex flex-col justify-start">
         <PrimaryButton onClick={_handleUploadClick} >Upload New ClassList</PrimaryButton>
@@ -108,6 +112,7 @@ const AccountMenu = (props) => {
       
       </div>
     </Modal>
+    </>
   )
 }
 

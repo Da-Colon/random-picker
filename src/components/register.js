@@ -21,17 +21,12 @@ const Register = () => {
 
   const _onSubmit = async (values) => {
     dispatch({ type: "SUBMITTING" });
-    const res = await post(
-      `${process.env.REACT_APP_ENDPOINT}/users/register`,
-      values
-    );
+    const res = await post( `${process.env.REACT_APP_ENDPOINT}/users/register`, values );
     const { user } = await res.json();
     if (res.status === 200) {
       localStorage.setItem("user", JSON.stringify(user));
       dispatch({ type: "LOGGED_IN", payload: { user: user } });
-      setTimeout(() => {
-        dispatch({ type: "SUBMITTING" });
-      }, 2000);
+      setTimeout(() => { dispatch({ type: "SUBMITTING" }) }, 2000);
       history.push("/");
     } else {
       dispatch({ type: "SUBMITTING" });
