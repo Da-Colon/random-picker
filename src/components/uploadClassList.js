@@ -10,14 +10,17 @@ import LoadingModal from "./views/loadingModal";
 
 const UploadClassList = () => {
   const history = useHistory();
+  const [hide, setHide] = useState(false);
   const [students, setStudents] = useState([]);
+  const [numOfStudents, setNumOfStudents] = useState(24)
   const [className, setClassName] = useState("");
   const [file, setFile] = useState(undefined);
-  const dispatch = useContext(DispatchContext)
   const { user, submitting } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext)
 
   const _handleUpLoad = async (e) => {
     e.preventDefault();
+    setHide(true)
     const formData = new FormData();
     formData.append("file", file);
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/upload-csv`,
@@ -35,6 +38,11 @@ const UploadClassList = () => {
     newArr[index] = e.currentTarget.value;
     setStudents(newArr);
   };
+
+  const _handleNumChange = (e) => {
+    const {value} = e.target
+    setNumOfStudents(value)
+  }
 
   const _handleClassListSubmit = async (e) => {
     e.preventDefault();
@@ -90,15 +98,43 @@ const UploadClassList = () => {
     setStudents(newArr.filter((value, index) => index !== removedStudent));
   };
 
+  const _manualCreateList = () => {
+    setHide(true)
+    for(let i = 0; i < numOfStudents; i++)
+      students.push("")
+  }
+
   return (
     <>
     {submitting && <LoadingModal>Saving...</LoadingModal>}
-    <FormModal header="Upload CSV from Schoology">
+
+      <FormModal>
+    {!hide && (
+      <>
+      <h1 className="text-2xl font-extrabold">Upload from Schoology</h1>
       <input className="bg-gray-200 mr-2" type="file" onChange={(e) => setFile(e.target.files[0])} />
       <PrimaryButton onClick={_handleUpLoad}>Upload</PrimaryButton>
       <div className="text-blue-700 text-sm cursor-pointer tracking-wide" onClick={() => history.push('/instructions')}>
         Click Here for Instuctions
       </div>
+        or
+      <div>
+      <h1 className="text-2xl font-extrabold">Create from scratch</h1>
+        Number of Students: 
+        <input
+          className="mx-2 bg-gray-200 pl-2" 
+          type="number"
+          value={numOfStudents}
+          min="1"
+          max="30"
+          onChange={_handleNumChange}
+        />
+        <PrimaryButton onClick={_manualCreateList}>
+          Create
+        </PrimaryButton>
+      </div>
+      </>
+    )}
 
       {students.length > 0 && (
         <form className="flex flex-col" onSubmit={_handleClassListSubmit}>
@@ -111,7 +147,7 @@ const UploadClassList = () => {
               placeholder="example: January 2020 Cohort"
               required
               autoFocus
-            />
+              />
           </label>
           <label htmlFor="edit-class-list" className="text-lg font-semibold">
             Edit Student Names
@@ -125,7 +161,7 @@ const UploadClassList = () => {
                   value={student}
                   type="text"
                   onChange={(e) => _handleChange(e, index)}
-                />
+                  />
                 <XButton onClick={() => _removeStudent(index)} />
               </div>
             ))}
@@ -133,7 +169,7 @@ const UploadClassList = () => {
           <SecondaryButton
             onClick={_addStudent}
             className="m-2 p-1 px-2 w-48 self-center"
-          >
+            >
             <i className="fas fa-plus" /> Add Student
           </SecondaryButton>
           <div>
