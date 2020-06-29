@@ -6,7 +6,6 @@
 .pnp.js
 
 # CYPRESS
-/cypress
 cypress.json
 
 # testing
@@ -27,3 +26,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .stylelintrc
+
+/cypress/integration/examples/
