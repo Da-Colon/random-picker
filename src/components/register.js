@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
+import { DispatchContext, StateContext } from "../context";
+import post from "../utils/post";
 import PrimaryButton from "./views/primaryButton";
 import Error from "./views/formError";
-import { DispatchContext, StateContext } from "../context";
 import LoadingModal from "./views/loadingModal";
-import post from "../utils/post";
 import FormModal from "./views/formModal";
 
 const Register = () => {
@@ -36,7 +36,7 @@ const Register = () => {
   return (
     <>
       {submitting && <LoadingModal>Submitting...</LoadingModal>}
-       <FormModal header="Register New Account!">
+        <FormModal header="Register New Account!">
           <Formik
             validationSchema={Yup.object().shape({
               username: Yup.string().required("Required"),
@@ -74,6 +74,7 @@ const Register = () => {
                     <Error>{errors.username}</Error>
                   )}
                   <input
+                    data-cy="username-input"
                     error={errors.username}
                     className="w-64 p-1 pl-4 ml-8 outline-none rounded-lg bg-gray-300 self-end"
                     type="text"
@@ -89,6 +90,7 @@ const Register = () => {
                     <Error>{errors.password}</Error>
                   )}
                   <input
+                    data-cy="password-input"
                     error={errors.password}
                     className="w-64 p-1 pl-4 ml-8 outline-none rounded-lg bg-gray-300"
                     type="password"
@@ -104,6 +106,7 @@ const Register = () => {
                     <Error>{errors.firstName}</Error>
                   )}
                   <input
+                    data-cy="first-name-input"
                     error={errors.firstName}
                     className="w-64 p-1 pl-4 ml-8 outline-none rounded-lg bg-gray-300"
                     type="text"
@@ -118,6 +121,7 @@ const Register = () => {
                     <Error>{errors.lastName}</Error>
                   )}
                   <input
+                    data-cy="last-name-input"
                     error={errors.lastName}
                     className="w-64 p-1 pl-4 ml-8 outline-none rounded-lg bg-gray-300"
                     type="text"
@@ -139,6 +143,7 @@ const Register = () => {
                             className="text-md mx-4 font-semibold"
                           >
                             <input
+                              data-cy="instructor-yes-radio"
                               {...field}
                               errors={errors.isInstructor}
                               className="mr-2 w-8"
@@ -153,6 +158,7 @@ const Register = () => {
                             className="text-md mx-4 font-semibold"
                           >
                             <input
+                              data-cy="instructor-no-radio"
                               {...field}
                               errors={errors.isInstructor}
                               className="mr-2 w-8"
@@ -167,7 +173,7 @@ const Register = () => {
                       )}
                     </Field>
                 </div>
-                <PrimaryButton className="w-48 self-center my-8" type="submit">
+                <PrimaryButton data-cy="register-button" className="w-48 self-center my-8" type="submit">
                   Register
                 </PrimaryButton>
               </form>

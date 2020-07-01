@@ -8,7 +8,7 @@ import image_four from "../assets/images/upload-file.png";
 const Instructions = () => (
   <FormModal>
     <div className="text-left flex flex-col items-center">
-      <div className=" mb-8">
+      <div data-cy="instructions-heading" className=" mb-8">
         Thanks for using Who's Next! Let's walk through a few steps to upload your
         first class list! First register or log in to your account on <a href="https://whosnext.netlify.app">whosnext.netlify.app</a> We will then need to
         navigate to your <a href="https://app.schoology.com/" >Schoology account</a> as a DIR

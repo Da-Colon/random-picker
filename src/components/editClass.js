@@ -10,9 +10,9 @@ const cohort = JSON.parse(localStorage.getItem('prefered_class'))
 
 const EditClass = () => {
   const history = useHistory()
+  const { user } = useContext(StateContext)
   const [students, setStudents] = useState([])
   const [className, setClassName] = useState("")
-  const { user } = useContext(StateContext)
 
   useEffect(() => {
     _getdefaultClass()
@@ -23,7 +23,7 @@ const EditClass = () => {
     setClassName(cohort.name)
   }
 
-  const _removeStudent = async (removedStudent) => {
+  const _removeStudent = (removedStudent) => {
     const newArr = [...students]
     setStudents(newArr.filter((value, index) => index !== removedStudent));
   }
@@ -66,41 +66,42 @@ const EditClass = () => {
   return (
     <FormModal>
       {students.length > 0 && (
-      <form className="flex flex-col" onSubmit={_handleClassListSubmit}>
-        <label htmlFor="class-name" className="text-lg font-semibold">Class Name:
-          <input 
-            type="text"
-            onChange={(e) => setClassName(e.target.value)}
-            className="bg-gray-100 m-2 p-1 px-2 rounded-md text-md"
-            value={className}
-            required
-            autoFocus
-          />
-        </label>
-        <label htmlFor="edit-class-list" className="text-lg font-semibold">Edit Student Names</label>
-        <div className="flex items-center justify-center flex-wrap">
-
-          {students.map((student, index) => (
-            <div key={index}>
+        <form className="flex flex-col" onSubmit={_handleClassListSubmit}>
+          <label htmlFor="class-name" className="text-lg font-semibold">Class Name:
             <input
-            name="edit-class-list"
-            className="bg-blue-100 m-2 p-1 px-2 rounded-md"
-            value={student}
-            type="text"
-            onChange={(e) => _handleChange(e, index)}
+              data-cy="class-name-input"
+              type="text"
+              onChange={(e) => setClassName(e.target.value)}
+              className="bg-gray-100 m-2 p-1 px-2 rounded-md text-md"
+              value={className}
+              required
+              autoFocus
             />
-            <XButton onClick={() => _removeStudent(index)} />
-            </div>
+          </label>
+          <label htmlFor="edit-class-list" className="text-lg font-semibold">Edit Student Names</label>
+          <div data-cy="class-name-container" className="flex items-center justify-center flex-wrap">
+
+            {students.map((student, index) => (
+              <div key={index}>
+                <input
+                  name="edit-class-list"
+                  className="bg-blue-100 m-2 p-1 px-2 rounded-md"
+                  value={student}
+                  type="text"
+                  onChange={(e) => _handleChange(e, index)}
+                />
+                <XButton onClick={() => _removeStudent(index)} />
+              </div>
             ))}
-        </div>
-        <SecondaryButton onClick={_addStudent} className="m-2 p-1 px-2 w-48 self-center">
-          <i className="fas fa-plus" /> Add Student
-        </SecondaryButton>
-        <div>
-        <PrimaryButton type="submit">Save</PrimaryButton>
-        </div>
-      </form>
-        )}
+          </div>
+          <SecondaryButton data-cy="add-student-button" onClick={_addStudent} className="m-2 p-1 px-2 w-48 self-center">
+            <i className="fas fa-plus" /> Add Student
+          </SecondaryButton>
+          <div>
+            <PrimaryButton data-cy="submit-button" type="submit">Save</PrimaryButton>
+          </div>
+        </form>
+      )}
     </FormModal>
   )
 }

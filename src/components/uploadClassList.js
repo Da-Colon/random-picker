@@ -1,22 +1,22 @@
 import React, { useState, useContext } from "react";
-import FormModal from "./views/formModal";
-import PrimaryButton from "./views/primaryButton";
+import { useHistory } from "react-router-dom";
 import { StateContext, DispatchContext } from "../context";
 import post from "../utils/post";
-import { useHistory } from "react-router-dom";
+import FormModal from "./views/formModal";
+import PrimaryButton from "./views/primaryButton";
 import XButton from "./views/xButton";
 import SecondaryButton from "./views/secondaryButton";
 import LoadingModal from "./views/loadingModal";
 
 const UploadClassList = () => {
   const history = useHistory();
+  const { user, submitting } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext)
   const [hide, setHide] = useState(false);
   const [students, setStudents] = useState([]);
   const [numOfStudents, setNumOfStudents] = useState(24)
   const [className, setClassName] = useState("");
   const [file, setFile] = useState(undefined);
-  const { user, submitting } = useContext(StateContext);
-  const dispatch = useContext(DispatchContext)
 
   const _handleUpLoad = async (e) => {
     e.preventDefault();
@@ -106,41 +106,42 @@ const UploadClassList = () => {
 
   return (
     <>
-    {submitting && <LoadingModal>Saving...</LoadingModal>}
-
+      {submitting && <LoadingModal>Saving...</LoadingModal>}
       <FormModal>
-    {!hide && (
-      <>
-      <h1 className="text-2xl font-extrabold">Upload from Schoology</h1>
-      <input className="bg-gray-200 mr-2" type="file" onChange={(e) => setFile(e.target.files[0])} />
-      <PrimaryButton onClick={_handleUpLoad}>Upload</PrimaryButton>
-      <div className="text-blue-700 text-sm cursor-pointer tracking-wide" onClick={() => history.push('/instructions')}>
-        Click Here for Instuctions
-      </div>
-        or
-      <div>
-      <h1 className="text-2xl font-extrabold">Create from scratch</h1>
-        Number of Students: 
-        <input
-          className="mx-2 bg-gray-200 pl-2" 
-          type="number"
-          value={numOfStudents}
-          min="1"
-          max="30"
-          onChange={_handleNumChange}
-        />
-        <PrimaryButton onClick={_manualCreateList}>
-          Create
-        </PrimaryButton>
-      </div>
-      </>
-    )}
+        {!hide && (
+          <>
+            <h1 className="text-2xl font-extrabold">Upload from Schoology</h1>
+            <input data-cy="upload-file-input" className="bg-gray-200 mr-2" type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <PrimaryButton data-cy="upload-file-button" onClick={_handleUpLoad}>Upload</PrimaryButton>
+            <div data-cy="instruction-link" className="text-blue-700 text-sm cursor-pointer tracking-wide" onClick={() => history.push('/instructions')}>
+              Click Here for Instuctions
+            </div>
+              or
+            <div>
+              <h1 className="text-2xl font-extrabold">Create from scratch</h1>
+              Number of Students: 
+              <input
+                data-cy="number-of-students"
+                className="mx-2 bg-gray-200 pl-2" 
+                type="number"
+                value={numOfStudents}
+                min="1"
+                max="30"
+                onChange={_handleNumChange}
+              />
+              <PrimaryButton onClick={_manualCreateList}>
+                Create
+              </PrimaryButton>
+            </div>
+          </>
+        )}
 
       {students.length > 0 && (
         <form className="flex flex-col" onSubmit={_handleClassListSubmit}>
           <label htmlFor="class-name" className="text-lg font-semibold">
             Class Name:
             <input
+              data-cy="class-name"
               type="text"
               onChange={(e) => setClassName(e.target.value)}
               className="bg-gray-200 m-2 p-1 px-2 rounded-md text-md"
@@ -152,7 +153,7 @@ const UploadClassList = () => {
           <label htmlFor="edit-class-list" className="text-lg font-semibold">
             Edit Student Names
           </label>
-          <div className="flex items-center justify-center flex-wrap">
+          <div data-cy="class-list-container" className="flex items-center justify-center flex-wrap">
             {students.map((student, index) => (
               <div key={index}>
                 <input
@@ -167,13 +168,14 @@ const UploadClassList = () => {
             ))}
           </div>
           <SecondaryButton
+            data-cy="add-student-button"
             onClick={_addStudent}
             className="m-2 p-1 px-2 w-48 self-center"
             >
             <i className="fas fa-plus" /> Add Student
           </SecondaryButton>
           <div>
-            <PrimaryButton type="submit">Save</PrimaryButton>
+            <PrimaryButton data-cy="save-button" type="submit">Save</PrimaryButton>
           </div>
         </form>
       )}

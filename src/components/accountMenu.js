@@ -6,7 +6,7 @@ import SecondaryButton from './views/secondaryButton';
 import { useHistory } from 'react-router-dom';
 import LoadingModal from './views/loadingModal';
 
-const AccountMenu = (props) => {
+const AccountMenu = () => {
   const history = useHistory();
   const {user, submitting} = useContext(StateContext)
   const dispatch = useContext(DispatchContext);
@@ -95,21 +95,20 @@ const AccountMenu = (props) => {
     {submitting && <LoadingModal>Changing Default...</LoadingModal>}
     <Modal _onClose={_closeMenu}>
       <div className="flex flex-col justify-start">
-        <PrimaryButton onClick={_handleUploadClick} >Upload New ClassList</PrimaryButton>
+        <PrimaryButton data-cy="upload-link-button" onClick={_handleUploadClick} >Upload New ClassList</PrimaryButton>
         <div className={showClassList ? "bg-dc-dark p-1 pb-3 rounded-md flex flex-col" : "flex flex-col"}>
-          <PrimaryButton onClick={() => setShowClassList(!showClassList)}>Choose Class List</PrimaryButton>
+          <PrimaryButton data-cy="choose-class-button" onClick={() => setShowClassList(!showClassList)}>Choose Class List</PrimaryButton>
           {showClassList && (
-            <select value={optionValue} onChange={_setDefaultClass} className="bg-gray-600 p-1 px-2 rounded-md shadow-lg text-lg text-white border border-2 border-dc-dark border-solid self-center">
+            <select data-cy="class-list-select" value={optionValue} onChange={_setDefaultClass} className="bg-gray-600 p-1 px-2 rounded-md shadow-lg text-lg text-white border border-2 border-dc-dark border-solid self-center">
               <option disabled value="0">Choose One....</option>
               {classLists.map((cohort, index) => <option key={index} value={cohort.id}>{cohort.name}</option>)}
             </select>
           )}
           </div>
-        <PrimaryButton onClick={_handleEditClick} disabled={!localStorage.getItem('prefered_class') ? true : false }>Edit ClassList</PrimaryButton>
-        <PrimaryButton onClick={_handleSpinnerClick}>Spinner</PrimaryButton>
-        <PrimaryButton onClick={_handleLogout}>Logout</PrimaryButton>
-        <SecondaryButton onClick={_handleAccountMenu}>Cancel</SecondaryButton>
-      
+        <PrimaryButton data-cy="edit-link-button" onClick={_handleEditClick} disabled={!localStorage.getItem('prefered_class') ? true : false }>Edit ClassList</PrimaryButton>
+        <PrimaryButton data-cy="spinner-link-button" onClick={_handleSpinnerClick}>Spinner</PrimaryButton>
+        <PrimaryButton data-cy="logout-button" onClick={_handleLogout}>Logout</PrimaryButton>
+        <SecondaryButton data-cy="cancel-menu-button" onClick={_handleAccountMenu}>Cancel</SecondaryButton>
       </div>
     </Modal>
     </>

@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import classnames from "classnames";
-import PrimaryButton from "./views/primaryButton";
 import { StateContext } from "../context";
+import PrimaryButton from "./views/primaryButton";
 import XButton from "./views/xButton";
 
 const baseClassNameSpinner = "text-4xl";
-const baseClassNameContainer =
-  "h-72 w-72 rounded-full flex items-center justify-center";
+const baseClassNameContainer = "h-72 w-72 rounded-full flex items-center justify-center";
 const animateSpinner = "animate";
 const finishedBorder = "tada";
 
 export default function Spinner() {
   const state = useContext(StateContext);
-  const [students, setStudents] = useState([]);
-  const [completed, setCompleted] = useState([]);
-  const [name, setName] = useState("");
   const [animate, setAnimate] = useState(false);
   const [finished, setfinished] = useState(false);
   const [showStudents, setShowStudents] = useState(false);
   const [showCompleted, setShowCompleted] = useState(false);
+  const [students, setStudents] = useState([]);
+  const [completed, setCompleted] = useState([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     setStudents(state.defaultClass);
@@ -64,13 +63,14 @@ export default function Spinner() {
     <div className="h-full w-full flex pt-16 flex-wrap bg-dc-dark">
       <div className="max-w-xs border-r border-solid flex flex-col bg-dc-dark text-white items-center flex-auto">
         <PrimaryButton
+          data-cy="show-students-button"
           className="w-48"
           onClick={() => setShowStudents(!showStudents)}
         >
           Waiting
         </PrimaryButton>
         {showStudents && (
-          <div className="h-64 no-scroll-bar-overflow">
+          <div data-cy="student-list-container" className="h-64 no-scroll-bar-overflow">
             {students.map((student, index) => (
               <div key={student} className="flex justify-between p-1 m-1 w-full">
                 <span>{student}</span>
@@ -80,13 +80,14 @@ export default function Spinner() {
           </div>
         )}
         <PrimaryButton
+          data-cy="show-completed-button"
           className="w-48"
           onClick={() => setShowCompleted(!showCompleted)}
         >
           Completed
         </PrimaryButton>
         {showCompleted && (
-          <div className="h-48 no-scroll-bar-overflow ">
+          <div data-cy="completed-list-container" className="h-48 no-scroll-bar-overflow ">
             {completed.map((student) => (
               <div key={student} className="flex justify-between p-1 w-full">
                 <span className="font-bold">{student}</span>
@@ -97,18 +98,19 @@ export default function Spinner() {
       </div>
       <div className="bg-dc-dark h-full flex flex-col items-center justify-center flex-auto">
         <div className="text-white text-left block">
-          <span>Waiting: {students.length}</span> | <span>Completed: {completed.length}</span>
+          <span data-cy="waiting-count" >Waiting: {students.length}</span> | <span data-cy="completed-count" >Completed: {completed.length}</span>
         </div>
         <span className="text-4xl m-2 font-extrabold text-white">
           Who's Next?
         </span>
-        <div className="w-64 h-48 flex bg-gray-400 justify-center items-center text-3xl font-bold inset-auto">
+        <div data-cy="name-box" className="w-64 h-48 flex bg-gray-400 justify-center items-center text-3xl font-bold inset-auto">
           {finished && <span>{name}</span>}
         </div>
         <PrimaryButton onClick={randomPicker}>Random Student</PrimaryButton>
       </div>
       <div className="flex flex-col bg-gray-100 items-center justify-center h-full w-72 flex-grow-2 no-scroll-bar-overflowx">
         <div
+          data-cy="spinner"
           className={
             !finished
               ? classnames(baseClassNameContainer)

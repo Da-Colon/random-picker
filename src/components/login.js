@@ -1,17 +1,17 @@
 import React, { useState, useContext} from "react";
+import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import Modal from "./views/modal";
 import * as Yup from "yup";
-import Error from "./views/formError";
 import { DispatchContext, StateContext } from "../context";
 import post from "../utils/post";
+import Modal from "./views/modal";
+import Error from "./views/formError";
 import PrimaryButton from "./views/primaryButton";
 import SecondaryButton from "./views/secondaryButton";
-import { useHistory } from "react-router-dom";
 import LoadingModal from "./views/loadingModal";
 
 
-const Login = (props) => {
+const Login = () => {
   const history = useHistory();
   const dispatch = useContext(DispatchContext);
   const {submitting} = useContext(StateContext)
@@ -53,7 +53,6 @@ const Login = (props) => {
       if(res.status === 200){
         localStorage.removeItem('prefered_class')
         localStorage.setItem('prefered_class', JSON.stringify(data))
-        
       } 
     } catch (error){
       console.log(error)
@@ -69,66 +68,68 @@ const Login = (props) => {
 
   return (
     <>
-    {submitting && <LoadingModal>Logging in...</LoadingModal>}
-    <Modal _onClose={_closeMenu}>
-      {error && <Error>{error}</Error>}
-      <Formik
-        validationSchema={Yup.object().shape({
-          username: Yup.string().required("User name is required"),
-          password: Yup.string()
-            .required("Password is required")
-            .min(4, "Password at least 4 characters"),
-        })}
-        initialValues={{
-          username: "",
-          password: userPassword ? userPassword : "",
-        }}
-        onSubmit={(values) => {
-          _onSubmit({
-            ...values,
-            username: values.username,
-            password: values.password,
-          });
-        }}
-      >
-        {({ values, errors, touched, handleChange, handleSubmit }) => (
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            {(errors.username && touched.username) && <Error>{errors.username}</Error>}
-            {(errors.password && touched.password) && <Error>{errors.password}</Error>}
-            <label className="pt-4 text-xl font-semibold" htmlFor="username">
-              User Name:
-            </label>
-            <input
-              error={errors.username}
-              className="p-2 pl-4 outline-none rounded-lg bg-gray-300"
-              type="username"
-              autoComplete="username"
-              name="username"
-              value={values.username}
-              onChange={handleChange}
-            />
-            <label className="pt-4 text-xl font-semibold" htmlFor="password">
-              Password:
-            </label>
-            <input
-              error={errors.password}
-              className="p-2 pl-4 outline-none rounded-lg bg-gray-300"
-              onChange={handleChange}
-              type="password"
-              name="password"
-              autoComplete="current-password"
-              value={values.password}
-            />
-            <div className="w-full text-right mt-4 flex flex-col">
-              <PrimaryButton type="submit">Login</PrimaryButton>
-              <SecondaryButton onClick={() => dispatch({type: "LOGIN_MENU_TOGGLE"})} type="button">
-                Cancel
-              </SecondaryButton>
-            </div>
-          </form>
-        )}
-      </Formik>
-    </Modal>
+      {submitting && <LoadingModal>Logging in...</LoadingModal>}
+      <Modal _onClose={_closeMenu}>
+        {error && <Error>{error}</Error>}
+        <Formik
+          validationSchema={Yup.object().shape({
+            username: Yup.string().required("User name is required"),
+            password: Yup.string()
+              .required("Password is required")
+              .min(4, "Password at least 4 characters"),
+          })}
+          initialValues={{
+            username: "",
+            password: userPassword ? userPassword : "",
+          }}
+          onSubmit={(values) => {
+            _onSubmit({
+              ...values,
+              username: values.username,
+              password: values.password,
+            });
+          }}
+        >
+          {({ values, errors, touched, handleChange, handleSubmit }) => (
+            <form className="flex flex-col" onSubmit={handleSubmit}>
+              {(errors.username && touched.username) && <Error>{errors.username}</Error>}
+              {(errors.password && touched.password) && <Error>{errors.password}</Error>}
+              <label className="pt-4 text-xl font-semibold" htmlFor="username">
+                User Name:
+              </label>
+              <input
+                data-cy="username-input"
+                error={errors.username}
+                className="p-2 pl-4 outline-none rounded-lg bg-gray-300"
+                type="username"
+                autoComplete="username"
+                name="username"
+                value={values.username}
+                onChange={handleChange}
+              />
+              <label className="pt-4 text-xl font-semibold" htmlFor="password">
+                Password:
+              </label>
+              <input
+                data-cy="password-input"
+                error={errors.password}
+                className="p-2 pl-4 outline-none rounded-lg bg-gray-300"
+                onChange={handleChange}
+                type="password"
+                name="password"
+                autoComplete="current-password"
+                value={values.password}
+              />
+              <div className="w-full text-right mt-4 flex flex-col">
+                <PrimaryButton data-cy="login-button" type="submit">Login</PrimaryButton>
+                <SecondaryButton data-cy="cancel-button" onClick={() => dispatch({type: "LOGIN_MENU_TOGGLE"})} type="button">
+                  Cancel
+                </SecondaryButton>
+              </div>
+            </form>
+          )}
+        </Formik>
+      </Modal>
     </>
   );
 };
