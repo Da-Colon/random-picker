@@ -73,10 +73,8 @@ const Login = () => {
         {error && <Error>{error}</Error>}
         <Formik
           validationSchema={Yup.object().shape({
-            username: Yup.string().required("User name is required"),
-            password: Yup.string()
-              .required("Password is required")
-              .min(4, "Password at least 4 characters"),
+            username: Yup.string().required("Username is required"),
+            password: Yup.string().required("Password is required")
           })}
           initialValues={{
             username: "",
@@ -91,9 +89,9 @@ const Login = () => {
           }}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
-            <form className="flex flex-col" onSubmit={handleSubmit}>
-              {(errors.username && touched.username) && <Error>{errors.username}</Error>}
-              {(errors.password && touched.password) && <Error>{errors.password}</Error>}
+            <form data-cy="login-form" className="flex flex-col" onSubmit={handleSubmit}>
+              {(errors.username && touched.username) && <Error data-cy="error-username">{errors.username}</Error>}
+              {(errors.password && touched.password) && <Error data-cy="error-password">{errors.password}</Error>}
               <label className="pt-4 text-xl font-semibold" htmlFor="username">
                 User Name:
               </label>
