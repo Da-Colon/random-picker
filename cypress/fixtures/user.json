@@ -1,0 +1,11 @@
+{
+  "user": { 
+    "id": 4,
+    "user_name": "admin",
+    "password": "test",
+    "first_name": "John",
+    "last_name": "Doe",
+    "is_instructor": true,
+    "prefered_class_list": null
+  }
+}
