@@ -60,9 +60,10 @@ const UploadClassList = () => {
       const data = await response.json();
       localStorage.setItem("prefered_class", JSON.stringify(data));
       _handleUpdateUserPreference(data.id);
-      setTimeout(() => { dispatch({ type: "SUBMITTING" }) }, 2000);
+      setTimeout(() => { dispatch({ type: "SUBMITTING"}) 
       history.push("/");
       window.location.reload();
+      }, 2000);
     } else {
       console.log("ERROR adding new class.");
       dispatch({ type: "SUBMITTING" })
@@ -88,7 +89,6 @@ const UploadClassList = () => {
     );
     if (response.status === 200) {
       const data = await response.json();
-      localStorage.removeItem("user");
       localStorage.getItem("user", JSON.stringify(data));
     }
   };

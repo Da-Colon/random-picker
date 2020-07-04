@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.0",
+    "cypress-file-upload": "^4.0.7",
     "postcss-cli": "^7.1.1",
     "stylelint-config-recommended": "^3.0.0",
     "tailwindcss": "^1.4.6",

@@ -67,10 +67,12 @@ const AccountMenu = () => {
       },
       body: JSON.stringify({userId: user.id})
     })
-    if(response.status === 200){
+    if(response.status === 200 && response.json()){
       const data = await response.json();
       localStorage.removeItem('user')
       localStorage.getItem('user', JSON.stringify(data))
+    } else{
+      return;
     }
   }
 
@@ -99,7 +101,7 @@ const AccountMenu = () => {
         <div className={showClassList ? "bg-dc-dark p-1 pb-3 rounded-md flex flex-col" : "flex flex-col"}>
           <PrimaryButton data-cy="choose-class-button" onClick={() => setShowClassList(!showClassList)}>Choose Class List</PrimaryButton>
           {showClassList && (
-            <select data-cy="class-list-select" value={optionValue} onChange={_setDefaultClass} className="bg-gray-600 p-1 px-2 rounded-md shadow-lg text-lg text-white border border-2 border-dc-dark border-solid self-center">
+            <select data-cy="class-list-select" value={optionValue} onChange={_setDefaultClass} className="bg-gray-600 p-1 px-2 rounded-md shadow-lg text-lg text-white border-2 border-dc-dark border-solid self-center">
               <option disabled value="0">Choose One....</option>
               {classLists.map((cohort, index) => <option key={index} value={cohort.id}>{cohort.name}</option>)}
             </select>
