@@ -51,7 +51,6 @@ const Login = () => {
       const res = await post(`${process.env.REACT_APP_ENDPOINT}/class/getdefaultclass`, user)
       const data = await res.json();
       if(res.status === 200){
-        localStorage.removeItem('prefered_class')
         localStorage.setItem('prefered_class', JSON.stringify(data))
       } 
     } catch (error){
