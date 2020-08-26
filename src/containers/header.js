@@ -40,7 +40,7 @@ const HeaderContainer = () => {
     history.push('/login')
   }
 
-  const Component = () => {
+  const Menu = () => {
     if(loggedIn){
       return <AccountMenu user={user} />
     }
@@ -55,7 +55,7 @@ const HeaderContainer = () => {
         <span className="text-2xl mx-2 font-serif tracking-widest font-bold">Who's Next</span>
         <i className="fas fa-question text-xs" />
       </p>
-      <Component />
+      <Menu />
     </div>
   )
 }
