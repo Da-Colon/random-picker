@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react'
+import React, { useContext, useState, useEffect, useCallback, ReactElement } from 'react'
 import AccountMenu from '../components/Header/accountMenu'
 import StartMenu from '../components/Header/starterMenu'
 import { useHistory } from 'react-router-dom'
@@ -23,7 +23,7 @@ const HeaderContainer = () => {
     if(user.id === null){
       setLoggedIn(false)
     }
-    if(user.id === typeof number){
+    if(user.id !== null){
       setLoggedIn(true)
     }
   }, [user])
@@ -40,13 +40,11 @@ const HeaderContainer = () => {
     history.push('/login')
   }
 
-  const Menu = () => {
+  const Menu: React.FC = (): ReactElement => {
     if(loggedIn){
       return <AccountMenu user={user} />
     }
-    if(!loggedIn){
-      return <StartMenu handleLinkRegister={_handleLinkRegister} handleLinkLogin={_handleLinkLogin} />
-    }
+    return <StartMenu handleLinkRegister={_handleLinkRegister} handleLinkLogin={_handleLinkLogin} />
   }
 
   return (

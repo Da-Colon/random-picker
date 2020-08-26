@@ -7,7 +7,7 @@ import UploadClassList from "../containers/uploadClassList";
 import EditClass from "../containers/editClass";
 import Instructions from "../containers/instructions";
 import { StateContext } from "../context";
-import Header from "../containers/header";
+import Header from "../containers/header.tsx";
 
 export default function AppRouter() {
   const { user } = useContext(StateContext);
