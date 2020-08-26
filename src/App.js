@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import ContextProvider from './context'
 
 const App = () => {
+  
   return (
   <ContextProvider>
       <Router />
