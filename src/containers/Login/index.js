@@ -1,10 +1,10 @@
 import React, {useContext} from 'react'
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import { DispatchContext } from "../context";
-import Modal from '../components/views/modal';
-import LoginForm from '../components/Login'
-import post from "../utils/post";
+import { DispatchContext } from "../../context";
+import Modal from '../../components/views/modal';
+import LoginForm from '../../components/Login'
+import post from "../../utils/post";
 
 const LoginContainer = () => {
   const history = useHistory();

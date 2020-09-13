@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect, useCallback} from 'react'
-import AccountMenu from '../components/Header/accountMenu'
-import StartMenu from '../components/Header/starterMenu'
 import { useHistory } from 'react-router-dom'
-import { StateContext } from "../context";
+import AccountMenu from '../../components/Header/accountMenu'
+import StartMenu from '../../components/Header/starterMenu'
+import { StateContext } from "../../context";
 
 const HeaderContainer = () => {
   const history = useHistory();

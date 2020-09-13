@@ -1,14 +1,14 @@
 import React, { useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { StateContext } from "../context";
-import Header from "../containers/header";
-import Home from "../containers/home";
-import Spinner from "../containers/spinner";
-import Register from "../containers/register";
-import Login from "../containers/login"
-import UploadClassList from "../containers/uploadClassList";
-import EditClass from "../containers/editClass";
-import Instructions from "../containers/instructions";
+import Header from "../containers/Header";
+import Home from "../containers/Home";
+import Spinner from "../containers/Spinner";
+import Register from "../containers/Register";
+import Login from "../containers/Login"
+import UploadClassList from "../containers/UploadClass";
+import EditClass from "../containers/EditClass";
+import Instructions from "../containers/Instructions";
 
 export default function AppRouter() {
   const { user } = useContext(StateContext);
