@@ -1,13 +1,6 @@
 import React from "react";
 
-type HeaderProps = {
-  user: {
-    first_name: string,
-    last_name: string
-  },
-}
-
-const Header = ({user}: HeaderProps) => (
+const Header = ({user}) => (
   <div className="self-center">
     <span data-cy="account-menu-click" className="mx-2 cursor-pointer">
       <i className="fas fa-user-circle mr-1" />

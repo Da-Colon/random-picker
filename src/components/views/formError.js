@@ -1,19 +1,12 @@
 import React from "react";
-import classname from "classnames";
+import classnames from "classnames";
 
 const baseClass = "text-sm text-red-600 mt-1";
-const animatedClass = baseClass + " animated shake";
 
 const Error = (props) => (
-  <div
-    {...props}
-    className={
-      props.animate
-        ? classname(animatedClass, props.className)
-        : classname(baseClass, props.className)
-    }
-  >
-    <i className="fas fa-exclamation-circle inline-block" /> {props.children}
+  <div className={classnames(baseClass, props.classname)}>
+    <i className="fas fa-exclamation-circle inline-block mr-2" />
+    {props.children}
   </div>
 );
 

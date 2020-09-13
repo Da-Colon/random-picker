@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
-import FormModal from './views/formModal'
+import FormModal from './views/forms/formModal'
 import { StateContext } from '../context'
 import XButton from './views/xButton'
-import PrimaryButton from './views/primaryButton'
+import PrimaryButton from './views/buttons/primaryButton'
 import { useHistory } from 'react-router-dom'
-import SecondaryButton from './views/secondaryButton'
+import SecondaryButton from './views/buttons/secondaryButton'
 
 const cohort = JSON.parse(localStorage.getItem('prefered_class'))
 
@@ -98,7 +98,7 @@ const EditClass = () => {
             <i className="fas fa-plus" /> Add Student
           </SecondaryButton>
           <div>
-            <PrimaryButton data-cy="submit-button" type="submit">Save</PrimaryButton>
+            <PrimaryButton data-cy="submit-button" typeOfButton="submit">Save</PrimaryButton>
           </div>
         </form>
       )}

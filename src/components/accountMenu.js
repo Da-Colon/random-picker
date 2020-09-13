@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Modal from './views/modal'
 import { DispatchContext, StateContext} from '../context';
-import PrimaryButton from './views/primaryButton';
-import SecondaryButton from './views/secondaryButton';
+import PrimaryButton from './views/buttons/primaryButton';
+import SecondaryButton from './views/buttons/secondaryButton';
 import { useHistory } from 'react-router-dom';
 import LoadingModal from './views/loadingModal';
 
@@ -107,10 +107,10 @@ const AccountMenu = () => {
             </select>
           )}
           </div>
-        <PrimaryButton data-cy="edit-link-button" onClick={_handleEditClick} disabled={!localStorage.getItem('prefered_class') ? true : false }>Edit ClassList</PrimaryButton>
-        <PrimaryButton data-cy="spinner-link-button" onClick={_handleSpinnerClick}>Spinner</PrimaryButton>
-        <PrimaryButton data-cy="logout-button" onClick={_handleLogout}>Logout</PrimaryButton>
-        <SecondaryButton data-cy="cancel-menu-button" onClick={_handleAccountMenu}>Cancel</SecondaryButton>
+        <PrimaryButton typeOfButton="button" handleClick={_handleEditClick} disabled={!localStorage.getItem('prefered_class') ? true : false }>Edit ClassList</PrimaryButton>
+        <PrimaryButton typeOfButton="button" handleClick={_handleSpinnerClick}>Spinner</PrimaryButton>
+        <PrimaryButton typeOfButton="button" handleClick={_handleLogout}>Logout</PrimaryButton>
+        <SecondaryButton handleClick={_handleAccountMenu} label="Cancel" />
       </div>
     </Modal>
     </>

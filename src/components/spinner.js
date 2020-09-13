@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import classnames from "classnames";
 import { StateContext } from "../context";
-import PrimaryButton from "./views/primaryButton";
+import PrimaryButton from "./views/buttons/primaryButton";
 import XButton from "./views/xButton";
 
 const baseClassNameSpinner = "text-4xl";

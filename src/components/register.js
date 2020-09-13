@@ -4,10 +4,10 @@ import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import { DispatchContext, StateContext } from "../context";
 import post from "../utils/post";
-import PrimaryButton from "./views/primaryButton";
+import PrimaryButton from "./views/buttons/primaryButton";
 import Error from "./views/formError";
 import LoadingModal from "./views/loadingModal";
-import FormModal from "./views/formModal";
+import FormModal from "./views/forms/formModal";
 
 const Register = () => {
   const history = useHistory();
@@ -173,7 +173,7 @@ const Register = () => {
                       )}
                     </Field>
                 </div>
-                <PrimaryButton data-cy="register-button" className="w-48 self-center my-8" type="submit">
+                <PrimaryButton data-cy="register-button" className="w-48 self-center my-8" typeOfButton="submit">
                   Register
                 </PrimaryButton>
               </form>

@@ -1,5 +1,5 @@
 import React from "react";
-import FormModal from "./views/formModal";
+import FormModal from "./views/forms/formModal";
 import image_one from "../assets/images/click-gradebook.png";
 import image_two from "../assets/images/click-export.png";
 import image_three from "../assets/images/exporting.png";

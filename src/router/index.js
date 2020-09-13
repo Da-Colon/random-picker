@@ -1,13 +1,14 @@
 import React, { useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { StateContext } from "../context";
+import Header from "../containers/header";
 import Home from "../containers/home";
 import Spinner from "../containers/spinner";
 import Register from "../containers/register";
+import Login from "../containers/login"
 import UploadClassList from "../containers/uploadClassList";
 import EditClass from "../containers/editClass";
 import Instructions from "../containers/instructions";
-import { StateContext } from "../context";
-import Header from "../containers/header.tsx";
 
 export default function AppRouter() {
   const { user } = useContext(StateContext);
@@ -28,11 +29,13 @@ export default function AppRouter() {
   }, [pathName, user.id]);
 
   return (
+    <div className="h-screen">
       <Router>
         <Header />
         <Route path="/" component={Home} exact />
-        <Route path="/register" component={Register} exact />
-        <Route path="/instructions" component={Instructions} exact />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <Route path="/instructions" component={Instructions} />
         {user.id !== null && (
           <>
             <Route path="/spinner" component={Spinner} exact />
@@ -41,6 +44,7 @@ export default function AppRouter() {
           </>
         )}
       </Router>
+    </div>
   );
 }
 

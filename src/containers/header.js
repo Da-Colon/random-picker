@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback, ReactElement } from 'react'
+import React, { useContext, useState, useEffect, useCallback} from 'react'
 import AccountMenu from '../components/Header/accountMenu'
 import StartMenu from '../components/Header/starterMenu'
 import { useHistory } from 'react-router-dom'
@@ -40,7 +40,7 @@ const HeaderContainer = () => {
     history.push('/login')
   }
 
-  const Menu: React.FC = (): ReactElement => {
+  const Menu = () => {
     if(loggedIn){
       return <AccountMenu user={user} />
     }
@@ -48,7 +48,7 @@ const HeaderContainer = () => {
   }
 
   return (
-    <div className="bg-dc-dark flex justify-between">
+    <div className="bg-dc-dark absolute w-full top-0 flex justify-between">
       <p className="text-white w-fit p-2 flex justify-center items-center trans cursor-pointer" onClick={_handleLinkHome}>
         <span className="text-2xl mx-2 font-serif tracking-widest font-bold">Who's Next</span>
         <i className="fas fa-question text-xs" />

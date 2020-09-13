@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { StateContext, DispatchContext } from "../context";
 import post from "../utils/post";
-import FormModal from "./views/formModal";
-import PrimaryButton from "./views/primaryButton";
+import FormModal from "./views/forms/formModal";
+import PrimaryButton from "./views/buttons/primaryButton";
 import XButton from "./views/xButton";
-import SecondaryButton from "./views/secondaryButton";
+import SecondaryButton from "./views/buttons/secondaryButton";
 import LoadingModal from "./views/loadingModal";
 
 const UploadClassList = () => {
@@ -175,7 +175,7 @@ const UploadClassList = () => {
             <i className="fas fa-plus" /> Add Student
           </SecondaryButton>
           <div>
-            <PrimaryButton data-cy="save-button" type="submit">Save</PrimaryButton>
+            <PrimaryButton data-cy="save-button" typeOfButton="submit">Save</PrimaryButton>
           </div>
         </form>
       )}
