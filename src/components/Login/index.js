@@ -7,7 +7,7 @@ import Error from "../views/formError";
 import FormHeader from "../views/formHeader";
 
 
-const Login = ({loginSchema, initialValues, handleSubmit, handleErrors}) => (
+const Login = ({loginSchema, initialValues, handleSubmit}) => (
   <Formik
     validationSchema={loginSchema}
     initialValues={initialValues}

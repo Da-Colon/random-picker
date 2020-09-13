@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { DispatchContext } from "../context";
@@ -9,7 +9,6 @@ import post from "../utils/post";
 const LoginContainer = () => {
   const history = useHistory();
   const dispatch = useContext(DispatchContext);
-  const [error, setError] = useState(null)
 
   const _handleSubmit = async (values) => {
     dispatch({ type: "SUBMITTING"})
@@ -52,11 +51,6 @@ const LoginContainer = () => {
     })
   }
 
-  const _handleErrors = (errors) => {
-    if(errors.length > 1) setError(true)
-    else setError(false)
-  }
-
   const _initialValues = {
     username: "",
     password: "",
@@ -66,7 +60,6 @@ const LoginContainer = () => {
     <Modal>
       <LoginForm 
         handleSubmit={_handleSubmit} 
-        handleErrors={_handleErrors}
         loginSchema={_loginSchema}
         initialValues={_initialValues} />
     </Modal>

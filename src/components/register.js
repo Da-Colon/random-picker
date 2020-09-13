@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import { DispatchContext, StateContext } from "../context";
+import { DispatchContext } from "../context";
 import post from "../utils/post";
 import Modal from "./views/modal";
 import RegisterForm from "./Register/RegisterForm";
