@@ -4,6 +4,7 @@ import PrimaryButton from "../views/buttons/primaryButton";
 import SecondaryButton from "../views/buttons/secondaryButton";
 import InputWithLabel from "../views/forms/inputwithLabel";
 import Error from "../views/formError";
+import FormHeader from "../views/formHeader";
 
 
 const Login = ({loginSchema, initialValues, handleSubmit, handleErrors}) => (
@@ -14,9 +15,7 @@ const Login = ({loginSchema, initialValues, handleSubmit, handleErrors}) => (
     {({ values, errors, touched, handleChange, handleSubmit, resetForm, validateForm }) => (
       <form data-cy="login-form" className="" onSubmit={handleSubmit}>
         <div className="pt-6 px-8 mb-8">
-          <div className="mb-6 text-center">
-            <span className="text-lg font-bold">Login to start!</span>
-          </div>
+          <FormHeader title="Login to get back to it!" />
           <InputWithLabel
             classname="mb-4"
             label="Username:"
