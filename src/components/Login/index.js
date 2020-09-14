@@ -35,7 +35,6 @@ const Login = ({loginSchema, initialValues, handleSubmit}) => (
             autocomplete="password"
             />
           <div>
-            {console.dir(touched)}
             {errors.username && touched.username && <Error>{errors.username}</Error>}
             {errors.password && touched.password &&<Error>{errors.password}</Error>}
           </div>
