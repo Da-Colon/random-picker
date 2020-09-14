@@ -9,6 +9,7 @@ import Login from "../containers/Login"
 import UploadClassList from "../containers/UploadClass";
 import EditClass from "../containers/EditClass";
 import Instructions from "../containers/Instructions";
+import AccountMenu from "../containers/AccountMenu";
 
 export default function AppRouter() {
   const { user } = useContext(StateContext);
@@ -36,6 +37,7 @@ export default function AppRouter() {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/instructions" component={Instructions} />
+        <Route path="/account" component={AccountMenu} />
         {user.id !== null && (
           <>
             <Route path="/spinner" component={Spinner} exact />
