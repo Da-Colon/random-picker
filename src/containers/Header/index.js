@@ -40,20 +40,14 @@ const HeaderContainer = () => {
     history.push('/login')
   }
 
-  const Menu = () => {
-    if(loggedIn){
-      return <AccountMenu user={user} />
-    }
-    return <StartMenu handleLinkRegister={_handleLinkRegister} handleLinkLogin={_handleLinkLogin} />
-  }
-
   return (
     <div className="bg-dc-dark absolute w-full top-0 flex justify-between">
       <p className="text-white w-fit p-2 flex justify-center items-center trans cursor-pointer" onClick={_handleLinkHome}>
         <span className="text-2xl mx-2 font-serif tracking-widest font-bold">Who's Next</span>
         <i className="fas fa-question text-xs" />
       </p>
-      <Menu />
+      {loggedIn && <AccountMenu user={user} />}
+      {!loggedIn && user.id === null && <StartMenu handleLinkRegister={_handleLinkRegister} handleLinkLogin={_handleLinkLogin} /> }
     </div>
   )
 }
